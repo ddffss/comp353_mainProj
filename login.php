@@ -44,7 +44,7 @@ if(isset($_POST['submit'])) {
 					</div>
 
 					<div class="input-group">
-						<input name="password" type="password" class="login-form-control" placeholder="Enter Date of Birth as YYYY-MM-DD">
+						<input name="password" type="password" class="login-form-control" placeholder="Enter First Name">
 					</div>
 					<span class="input-group-btn">
 							<button class="btn btn-primary" name="login" type="submit">Log In </button>

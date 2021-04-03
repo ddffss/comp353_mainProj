@@ -52,23 +52,6 @@ if(isset($_POST['login'])) {
         header("Location: ../login.php");
     }
 
-    else {
-        $_SESSION['firstname'] = $db_firstName;
-        $_SESSION['lastname'] =$db_lastName;
-        $_SESSION['medicare'] =$db_medCardNum;
-        $_SESSION['dob'] =$db_dob;
-        $_SESSION['phone'] =$db_phone;
-        $_SESSION['address'] =$db_address;
-        $_SESSION['city'] =$db_city;
-        $_SESSION['province'] =$db_province;
-        $_SESSION['postalCode'] =$db_postalCode;
-        $_SESSION['citizenship'] =$db_citizenship;
-        $_SESSION['email'] =$db_email;
-        $_SESSION['mother'] =$db_mother;
-        $_SESSION['father'] =$db_father;
-        
-    }
-
 ?>
 <div class="container">
 <div class="row profile">
@@ -76,16 +59,61 @@ if(isset($_POST['login'])) {
         <span class="dot"></span>
     </div>
     <div class="col-9">
-        <p class="profile"><?php echo $_SESSION['firstname'].' '. $_SESSION['lastname'] ?></p>
-        <p class="profile"><?php echo $_SESSION['medicare'] ?></p>
-        <p class="profile"><?php echo $_SESSION['phone'] ?></p>
+        <p class="profile"><?php echo $db_firstName.' '.$db_lastName ?></p>
+        <p class="profile"><?php echo $db_medCardNum ?></p>
+        <p class="profile"><?php echo $db_phone ?></p>
     </div>
-</div>
+    <div class="col-1"></div>
 
 <br>
 <?php include "includes/prof-sub-nav.php";?>
 <hr>
 </div>
+<br>
 
+
+    <form action="/action_page.php">
+        <div class="form-group details">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" value="<?php echo $db_firstName.' '.$db_lastName ?>">
+        </div>
+
+        <div class="form-group details">
+            <label for="medicare">Medicare Card No.:</label>
+            <input type="text" id="medicare" name="medicare" value="<?php echo $db_medCardNum ?>">
+        </div>
+
+        <div class="form-group details">
+            <label for="dob">Birthday:</label>
+            <input type="text" id="dob" name="dob" value="<?php echo $db_dob ?>">
+        </div>
+
+        <div class="form-group details">
+            <label for="phone">Phone No.:</label>
+            <input type="text" id="phone" name="phone" value="<?php echo $db_phone ?>">
+        </div>
+
+        <div class="form-group details">
+            <label for="email">Email Address:</label>
+            <input type="text" id="email" name="email" value="<?php echo $db_dob ?>">
+        </div>
+
+        <div class="form-group details">
+            <label for="address">Address:</label>
+            <input type="text" id="address" name="address" value="<?php echo $db_address.' '. $db_city.' '.$db_province.' '.$db_postalCode ?>">
+        </div>
+
+        <div class="form-group details">
+            <label for="mother">Mother:</label>
+            <input type="text" id="mother" name="mother" value="<?php echo $db_mother ?>">
+        </div>    
+
+        <div class="form-group details">
+            <label for="father">Father:</label>
+            <input type="text" id="father" name="father" value="<?php echo $db_father ?>">
+        </div>
+
+    </form> 
+</div>
 
 <?php include "includes/footer.php";?>

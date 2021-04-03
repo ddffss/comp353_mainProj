@@ -17,6 +17,14 @@ float: left;
 float: right;
 }
 
+.topnav a:hover {
+    border-bottom: 3px solid green;
+  }
+  
+.topnav a.active {
+    border-bottom: 3px solid green;
+}
+
 .nav-list {
 color: black;
 text-decoration: none;
@@ -74,9 +82,9 @@ th, td {
     margin-top: 20px;
 }
 
-input[type="text"] {
+/* input[type="text"] {
     padding: 5px;
-}
+} */
 
 /* profile */
 
@@ -89,6 +97,26 @@ input[type="text"] {
     margin-left: 15px;
 }
 
+label {
+    font-size: 18px;
+    color: #333;
+    height: 20px;
+    width: 200px;
+    margin-top: 10px;
+    margin-left: 10px;
+    text-align: left;
+    margin-right:15px;
+    float:left;
+}
+.form-group.details input {
+    height: 20px;
+    width: 400px;
+    border: 1px solid #000;
+    margin-top: 10px;
+    padding: 15px;
+}
+
+/* footer */
 footer {
     position: absolute;
     bottom: 0;
