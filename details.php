@@ -7,16 +7,10 @@
 
 
 <?php
-if(isset($_POST['login'])) {
-
-    $username = $_POST['username'];
-    $password = $_POST['password'];
-
 
 
     $username = mysqli_real_escape_string($connection, $username);
     $password = mysqli_real_escape_string($connection, $password);
-
 
     $query ="SELECT * FROM Person WHERE Medicare = '$username' && FirstName = '$password'" ;
 
@@ -25,11 +19,6 @@ if(isset($_POST['login'])) {
     if(!$select_user_query) {
         die("QUERY FAILED". mysqli_error($connection));
     }
-
-
-}
-
-
 
     while($row = mysqli_fetch_array($select_user_query)) {
 
@@ -46,10 +35,6 @@ if(isset($_POST['login'])) {
        $db_email = $row['Email'];
        $db_mother = $row['Parent1'];
        $db_father = $row['Parent2'];
-    }
-
-    if ($username !== $db_medCardNum && $password !==  $db_firstName) {
-        header("Location: ../login.php");
     }
 
 ?>
@@ -95,7 +80,7 @@ if(isset($_POST['login'])) {
 
         <div class="form-group details">
             <label for="email">Email Address:</label>
-            <input type="text" id="email" name="email" value="<?php echo $db_email ?>">
+            <input type="text" id="email" name="email" value="<?php echo $db_dob ?>">
         </div>
 
         <div class="form-group details">
