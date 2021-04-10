@@ -5,54 +5,23 @@
 <?php include "includes/prof-nav.php";?>
 
 
-
-<?php
-
-    $query ="SELECT * FROM Person";
-
-    // function below will pull out the result
-    $select_user_query = (mysqli_query($connection, $query));
-    if(!$select_user_query) {
-        die("QUERY FAILED". mysqli_error($connection));
-    }
-
-
-
-    while($row = mysqli_fetch_array($select_user_query)) {
-
-       $db_firstName = $row['FirstName'];
-       $db_lastName = $row['LastName'];
-       $db_medCardNum = $row['Medicare'];
-       $db_dob = $row['DOB'];
-       $db_phone = $row['Phone'];
-       $db_address = $row['Address'];
-       $db_city = $row['City'];
-       $db_province = $row['Province'];
-       $db_postalCode = $row['PostalCode'];
-       $db_citizenship = $row['Citizenship'];
-       $db_email = $row['Email'];
-       $db_mother = $row['Parent1'];
-       $db_father = $row['Parent2'];
-    }
-
-?>
 <div class="container">
-    <div class="row">
-        <div class="col-2">
-            <span class="dot"></span>
-        </div>
-        <div class="col-10">
-            <p class="profile"><?php echo $db_firstName.' '.$db_lastName ?></p>
-            <p class="profile"><?php echo $db_medCardNum ?></p>
-            <p class="profile"><?php echo $db_phone ?></p>
-        </div>
+<div class="row profile">
+    <div class="col-2">
+        <span class="dot"></span>
     </div>
-    <br>
-    <?php include "includes/prof-sub-nav.php";?>
-    <hr>
+    <div class="col-9">
+        <p class="profile"><?php echo $_SESSION['firstName'].' '.$_SESSION['lastName'] ?></p>
+        <p class="profile"><?php echo $_SESSION['medCardNum'] ?></p>
+        <p class="profile"><?php echo $_SESSION['phone'] ?></p>
     </div>
-    <br>
+    <div class="col-1"></div>
 
+<br>
+<?php include "includes/prof-sub-nav.php";?>
+<hr>
+</div>
+<br>
 
     <div class="row">
         <div class="col-md-4"></div>
