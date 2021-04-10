@@ -6,20 +6,6 @@
 
 <!-- search people by address -->
 <div class="container">
-
-    <div class="row">
-        <div class="col-6 addPerson">
-            <a href="./add-person.php">Add person</a>
-        </div>
-
-        <div class="col-6 peopleSearch">
-            <form action="search-address.php" method="post">
-                <input type="text" placeholder="Search by address..." name="search">
-                <button class="btn btn-primary" name="submit" type="submit">Search</button>
-            </form>
-        </div>
-    </div>
-
     <div class="row">
         <div class="col-1"></div>
         <div class="col-md-auto">
@@ -35,18 +21,28 @@
                     <th>Father</th>
                     </tr>
 
-            <?php
-                $query ="SELECT * FROM Person";
+    <?php
+    if(isset($_POST['submit'])) {
+        $search =$_POST['search'];
 
-                // function below will pull out the result
-                $select_user_query = (mysqli_query($connection, $query));
-                if(!$select_user_query) {
-                    die("QUERY FAILED". mysqli_error($connection));
-                }
+        $query ="SELECT * FROM Person WHERE Address LIKE '%$search%' ";
+        $select_user_query = mysqli_query($connection, $query);
 
+        if(!$select_user_query) {
+            die("QUERY FAILED" . mysqli_Error($connection));
+        }
 
+        // counts the total result of the search
+        $count = mysqli_num_rows($select_user_query);
 
-                while($row = mysqli_fetch_array($select_user_query)) {
+        if($count == 0) {
+            echo "<h6>NO RESULT</h6>";
+        }
+
+        else {
+
+            echo "<h3>Here's the list of People who lives at ".$search."</h3>";
+            while($row = mysqli_fetch_array($select_user_query)) {
 
                 $db_firstName = $row['FirstName'];
                 $db_lastName = $row['LastName'];
@@ -75,12 +71,16 @@
 
                     </tr> 
 
-            <?php } ?>
+            <?php }
 
 
-            </table>   
-        </div>
-        <div class="col-1"></div>
+        }
+    }
+
+    ?>
+    </table>   
     </div>
-    
+    <div class="col-1"></div>
+    </div>
+
 <?php include "includes/footer.php";?>

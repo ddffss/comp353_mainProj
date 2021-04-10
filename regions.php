@@ -8,8 +8,9 @@
     <div class="row">
     <h3> List of Public Health Facilities </h3>
 
-        <div class="col-12">
-            <table>
+        <div class="col-1"></div>
+        <div class="col-md-auto">
+            <table id="population">
                     <tr>
                     <th>Name</th>
                     <th>Center Type</th>
@@ -66,8 +67,11 @@
                     </tr> 
 
             <?php } ?>
+
+
             </table>   
         </div>
+        <div class="col-1"></div>
     </div>
     
 <?php include "includes/footer.php";?>

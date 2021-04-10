@@ -1,5 +1,6 @@
 <?php include "includes/db.php";?>
 <?php include "includes/header.php";?>
+<?php include "includes/index-nav.php";?>
 
 <div class="container">
 
@@ -36,3 +37,4 @@ if(isset($_POST['submit'])) {
 	</div>
 
 <?php include "includes/footer.php";?>
+ 

@@ -60,10 +60,17 @@ hr {
     margin-bottom: 20px !important;
 }
 
+.add-user-form-group {
+    margin-top: 10px!important;
+}
+
 p.profile {
     margin: 0px;
 
 }
+
+/* phfacility */
+
 
 /* people */
 table, th, td {
@@ -76,6 +83,11 @@ th, td {
     padding: 15px;
     width: 75%;
 }
+
+.addPerson {
+    margin-top: 30px;
+}
+
 .peopleSearch {
     text-align: end;
     margin-bottom: 20px;
