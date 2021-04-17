@@ -10,26 +10,26 @@
 
     <div class="row"> 
         <div class="col-6">
-            <h3 class="page-title"> List of Public Health Workers</h3>
+            <h3 class="page-title"> List of Group Zones</h3>
 
         </div>
 
         <div class="col-6">
-            <a class="add-function" href='./add-worker.php'><i class="fa fa-plus"></i> Add Public Health Worker</a>
+            <a class="add-function" href='./add-groupzone.php'><i class="fa fa-plus"></i> Add Group Zones</a>
         </div>
     </div>
 
             <table id="population">
                     <tr>
-                    <th>Medicare</th>      
-                    <th>Work Facility</th>
-                    <th>Shift</th>
+                    <th>Group Zone Name</th>      
+                    <th>Medicare</th>
                     <th>Actions</th>
+
                     </tr>
 
             <?php
                 
-                $query ="SELECT * FROM PublicHealthWorker";
+                $query ="SELECT * FROM GroupZone";
 
                 // function below will pull out the result
                 $select_user_query = (mysqli_query($connection, $query));
@@ -39,15 +39,14 @@
 
                 while($row = mysqli_fetch_array($select_user_query)) {
 
+                $db_groupzone = $row['ZoneName'];
                 $db_medicare = $row['Medicare'];
-                $db_workFacility = $row['WorkFacility'];
-                $db_shift = $row['Shift'];
-           
+                $db_id = $row['id'];
+
                    echo "<tr>";
+                   echo "<td>{$db_groupzone}</td>";
                    echo "<td>{$db_medicare}</td>";
-                   echo "<td>{$db_workFacility}</td>";
-                   echo "<td>{$db_shift}</td>";
-                   echo "<td class=\"action\"> <a href='phworkers.php?delete={$db_medicare}'><i class=\"fa fa-trash\"> </i></a> <a href='edit-worker.php?edit={$db_medicare}'><i class=\"fa fa-pencil\"> </i></a></td>";
+                   echo "<td class=\"action\"> <a href='groupzones.php?delete={$db_id}'><i class=\"fa fa-trash\"> </i></a> <a href='edit-groupzone.php?edit={$db_id}'><i class=\"fa fa-pencil\"> </i></a></td>";
 
                    echo "</tr>";
                 }
@@ -58,10 +57,10 @@
             global $connection;
 
               if(isset($_GET['delete'])) {
-                $medicare = $_GET['delete'];
-                $query_delete="DELETE FROM PublicHealthWorker WHERE Medicare LIKE '$medicare'";
+                $id = $_GET['delete'];
+                $query_delete="DELETE FROM GroupZone WHERE id LIKE '$id'";
                 $check_query_delete = mysqli_query($connection, $query_delete);
-                header("Location: phworkers.php");
+                header("Location: groupzones.php");
               }
         ?>
 

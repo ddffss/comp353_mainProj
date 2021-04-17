@@ -1,33 +1,37 @@
 <?php include "includes/db.php";?>
 
+
 <?php include "includes/header.php";?>
 <?php include "includes/index-nav.php";?>
 
 
 <div class="container">
-    <div class="row">
-    <h3> List of Public Health Facilities </h3>
+        
 
-        <div class="col-1"></div>
-        <div class="col-md-auto">
+    <div class="row"> 
+        <div class="col-6">
+            <h3 class="page-title"> List of Regions</h3>
+
+        </div>
+
+        <div class="col-6">
+            <a class="add-function" href='./add-region.php'><i class="fa fa-plus"></i> Add Region</a>
+        </div>
+    </div>
+
             <table id="population">
                     <tr>
                     <th>Name</th>
-                    <th>Center Type</th>
-                    <th>Testing Method</th>
-                    <th>Drive Thru</th>
-                    <th>Number of Employees</th>
-                    <th>Phone</th>
-                    <th>Address</th>
-                    <th>City</th>
-                    <th>Province</th>
-                    <th>postal Code</th>
-                    <th>Website</th>
-                    <th>List of Employees</th>
+                    <th>City</th>      
+                    <th>Zip Code</th>
+                    <th>Alert Status</th>
+                    <th>Actions</th>
                     </tr>
 
             <?php
-                $query ="SELECT * FROM PublicHealthCenter";
+                
+
+                $query="SELECT * FROM ZoneLevels zl , ZoneMuni zm , Municipalities m WHERE zm.`﻿ZoneName` = zl.GroupZone AND zm.Municipality = m.City";
 
                 // function below will pull out the result
                 $select_user_query = (mysqli_query($connection, $query));
@@ -35,43 +39,39 @@
                     die("QUERY FAILED". mysqli_error($connection));
                 }
 
-
-
                 while($row = mysqli_fetch_array($select_user_query)) {
 
-                $db_name = $row['Name'];
-                $db_centertype = $row['CenterType'];
-                $db_phone = $row['Phone'];
-                $db_address = $row['Address'];
+                $db_name = $row['GroupZone'];
                 $db_city = $row['City'];
-                $db_province = $row['Province'];
-                $db_postalcode = $row['PostalCode'];
-                $db_website = $row['Website'];
-                // $db_testingmethod = $row[''];
-                ?>
+                $db_zip = $row['Zip'];
+                $db_alert = $row['ZoneLevel'];
+           
+                   echo "<tr>";
+                   echo "<td>{$db_name}</td>";
+                   echo "<td>{$db_city}</td>";
+                   echo "<td>{$db_zip}</td>";
+                   echo "<td>{$db_alert}</td>";
 
-                    <tr>
-                    <td><?php echo $db_name; ?></td>
-                    <td><?php echo $db_centertype; ?></td>
-                    <td>Testing Method</td>
-                    <td>Yes/No</td>
-                    <td>Number of Employees</td>
-                    <td><?php echo $db_phone; ?></td>
-                    <td><?php echo $db_address; ?></td>
-                    <td><?php echo $db_city; ?></td>
-                    <td><?php echo $db_province; ?></td>
-                    <td><?php echo $db_postalcode; ?></td>
-                    <td><?php echo $db_website; ?></td>
-                    <td><a href="./phworkers.php">List of Employees</a></td>
+                   echo "<td class=\"action\"> <a href='regions.php?delete={$db_zip}'><i class=\"fa fa-trash\"> </i></a> <a href='edit-region.php?edit={$db_zip}'><i class=\"fa fa-pencil\"> </i></a></td>";
 
-                    </tr> 
+                   echo "</tr>";
+                }
 
-            <?php } ?>
+          ?>
+        
+        <?php
+            global $connection;
+
+              if(isset($_GET['delete'])) {
+                $zip = $_GET['delete'];
+                $query_delete="DELETE FROM Municipalities WHERE Zip LIKE '$zip'";
+                $check_query_delete = mysqli_query($connection, $query_delete);
+                header("Location: regions.php");
+              }
+        ?>
 
 
             </table>   
-        </div>
-        <div class="col-1"></div>
-    </div>
+</div>
     
 <?php include "includes/footer.php";?>

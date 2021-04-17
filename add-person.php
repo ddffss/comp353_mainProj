@@ -7,7 +7,7 @@
 
 <?php
 
-if(isset($_POST['create_user'])) {
+if(isset($_POST['add_user'])) {
 
     $user_firstname = $_POST['firstname'];
     $user_lastname = $_POST['lastname'];
@@ -23,12 +23,6 @@ if(isset($_POST['create_user'])) {
     $user_mother = $_POST['mother'];
     $user_father = $_POST['father'];
 
-
-    // $post_image = $_FILES['image']['name'];
-    // $post_image_temp = $_FILES['image']['tmp_name'];
-
-    // move_uploaded_file($post_image_temp, "../images/$post_image");
-
     $query = "INSERT INTO Person(Medicare, FirstName, LastName, DOB, Phone, Address,City, Province, PostalCode, Citizenship, Email, Parent1, Parent2) ";
     $query .= "VALUES('{$user_medicare}', '{$user_firstname}','{$user_lastname}','{$user_dob}','{$user_phone}','{$user_address}', '{$user_city}', '{$user_province}', '{$user_postalcode}', '{$user_citizenship}','{$user_email}', '{$user_mother}','{$user_father}')";
 
@@ -38,6 +32,8 @@ if(isset($_POST['create_user'])) {
     if(!$create_user_query) {
         die('QUERY FAILED' . mysqli_error($connection));
     }
+    header("Location: people.php");
+
 } 
 
 ?>
@@ -51,75 +47,75 @@ if(isset($_POST['create_user'])) {
         <div class="col-md-auto">
             <h3>Add Person</h3>
 
-            <form action="./people.php" method="post" enctype="multipart/form-data">
+            <form action="./add-person.php" method="post">
 
-                <div class="add-user-form-group">
+                <div class="add form-group">
                     <label for="title">Medicare Card</label>
-                    <input type="text" class="add-user-form-control" name="medicare">
+                    <input type="text" name="medicare">
                 <div>
 
-                <div class="add-user-form-group">
+                <div class="add form-group">
                     <label for="title">First Name</label>
-                    <input type="text" class="add-user-form-control" name="firstname">
+                    <input type="text" name="firstname">
                 <div>
 
-                <div class="add-user-form-group">
+                <div class="add form-group">
                     <label for="title">Last Name</label>
-                    <input type="text" class="add-user-form-control" name="lastname">
+                    <input type="text" name="lastname">
                 <div>
 
-                <div class="add-user-form-group">
+                <div class="add form-group">
                     <label for="title">Birthday</label>
-                    <input type="text" class="add-user-form-control" name="dob">
+                    <input type="date" name="dob">
                 <div>
 
-                <div class="add-user-form-group">
+                <div class="add form-group">
                     <label for="title">Phone</label>
-                    <input type="text" class="add-user-form-control" name="phone">
+                    <input type="text" name="phone">
                 <div>
 
-                <div class="add-user-form-group">
+                <div class="add form-group">
                     <label for="title">Address</label>
-                    <input type="text" class="add-user-form-control" name="address">
+                    <input type="text" name="address">
                 <div>
 
-                <div class="add-user-form-group">
+                <div class="add form-group">
                     <label for="title">City</label>
-                    <input type="text" class="add-user-form-control" name="city">
+                    <input type="text" name="city">
                 <div>
 
-                <div class="add-user-form-group">
+                <div class="add form-group">
                     <label for="title">Province</label>
-                    <input type="text" class="add-user-form-control" name="province">
+                    <input type="text" name="province">
                 <div>
 
-                <div class="add-user-form-group">
+                <div class="add form-group">
                     <label for="title">Postal Code</label>
-                    <input type="text" class="add-user-form-control" name="postalcode">
+                    <input type="text" name="postalcode">
                 <div>
 
-                <div class="add-user-form-group">
+                <div class="add form-group">
                     <label for="title">Citizenship</label>
-                    <input type="text" class="add-user-form-control" name="citizenship">
+                    <input type="text" name="citizenship">
                 <div>
 
-                <div class="add-user-form-group">
+                <div class="add form-group">
                     <label for="title">Email</label>
-                    <input type="email" class="add-user-form-control" name="email">
+                    <input type="email" name="email">
                 <div>
 
-                <div class="add-user-form-group">
+                <div class="add form-group">
                     <label for="title">Mother</label>
-                    <input type="text" class="add-user-form-control" name="mother">
+                    <input type="text" name="mother">
                 <div>
 
-                <div class="add-user-form-group">
+                <div class="add form-group">
                     <label for="title">Father</label>
-                    <input type="text" class="add-user-form-control" name="father">
+                    <input type="text" name="father">
                 <div>
 
-                <div class="add-user-form-group">
-                    <input class="btn btn-primary" type="submit" name="create_user" value="Add Person">
+                <div class="add form-group">
+                    <input class="btn btn-primary" type="submit" name="add_user" value="Add Person">
                 </div>
 
             </form>  

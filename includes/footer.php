@@ -18,6 +18,8 @@
     <script src="js/bootstrap.min.js"></script>
 
 </div>
+
+<?php ob_end_flush(); ?>
 </body>
 
 

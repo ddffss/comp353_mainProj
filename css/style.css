@@ -38,6 +38,10 @@ hr {
     margin: 0rem 0!important;
 }
 
+a.add-function {
+    float: right!important;
+    margin-top: 35px;
+}
 
 .row {
     margin-top: 30px;
@@ -60,7 +64,12 @@ hr {
     margin-bottom: 20px !important;
 }
 
-.add-user-form-group {
+
+.add.form-group {
+    margin-top: 10px!important;
+}
+
+.edit.form-group {
     margin-top: 10px!important;
 }
 
@@ -68,16 +77,28 @@ p.profile {
     margin: 0px;
 
 }
+/* ph workers */
+.page-title {
+    margin-top: 30px;
+}
 
 /* phfacility */
 
+table { 
+    font-size: 0.9vw; 
+}
+
 
 /* people */
+
+table { 
+    width: 100%; 
+    border-collapse: collapse; 
+}
+
 table, th, td {
     border: 1px solid black;
-    border-collapse: collapse;
-    width: 100%;
-  }
+}
 
 th, td {
     padding: 15px;
@@ -90,8 +111,6 @@ th, td {
 
 .peopleSearch {
     text-align: end;
-    margin-bottom: 20px;
-    margin-top: 20px;
 }
 
 /* input[type="text"] {
@@ -160,6 +179,12 @@ button.btn.btn-primary.submit {
 input#other {
     height: 100px;
 }
+
+td.action {
+    text-align: center!important;
+}
+
+
 
 /* footer */
 footer {

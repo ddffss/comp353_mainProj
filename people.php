@@ -8,8 +8,7 @@
 <div class="container">
 
     <div class="row">
-        <div class="col-6 addPerson">
-            <a href="./add-person.php">Add person</a>
+        <div class="col-6">
         </div>
 
         <div class="col-6 peopleSearch">
@@ -19,6 +18,18 @@
             </form>
         </div>
     </div>
+
+    <div class="row"> 
+        <div class="col-6">
+            <h3 class="page-title"> List of People</h3>
+
+        </div>
+
+        <div class="col-6">
+            <a class="add-function" href='./add-person.php'><i class="fa fa-plus"></i> Add Person</a>
+        </div>
+    </div>
+
 
     <div class="row">
         <div class="col-1"></div>
@@ -33,6 +44,7 @@
                     <th>Email</th>
                     <th>Mother</th>
                     <th>Father</th>
+                    <th>Actions</th>
                     </tr>
 
             <?php
@@ -61,22 +73,34 @@
                 $db_email = $row['Email'];
                 $db_mother = $row['Parent1'];
                 $db_father = $row['Parent2'];
-                ?>
+            
 
-                    <tr>
-                    <td><?php echo $db_firstName. ' ' . $db_lastName; ?></td>
-                    <td><?php echo  $db_dob; ?></td>
-                    <td><?php echo  $db_medCardNum; ?></td>
-                    <td><?php echo  $db_phone; ?></td>
-                    <td><?php echo  $db_citizenship; ?></td>
-                    <td><?php echo  $db_email; ?></td>
-                    <td><?php echo  $db_mother; ?></td>
-                    <td><?php echo  $db_father; ?></td>
+                    echo "<tr>";
+                    echo "<td>{$db_firstName} {$db_lastName}</td>";
+                    echo  "<td>{$db_dob}</td>";
+                    echo  "<td>{$db_medCardNum}</td>";
+                    echo  "<td>{$db_phone}</td>";
+                    echo  "<td>{$db_citizenship}</td>";
+                    echo  "<td>{$db_email}</td>";
+                    echo  "<td>{$db_mother}</td>";
+                    echo  "<td>{$db_father}</td>";
+                    echo "<td class=\"action\"><a href='people.php?delete={$db_medCardNum}'><i class=\"fa fa-trash\"></i></a> <a href='edit-person.php?edit={$db_medCardNum}'><i class=\"fa fa-pencil\"> </i></a></td>";
 
-                    </tr> 
+                    echo "</tr>";
 
-            <?php } ?>
+                 }
+            ?>
 
+            <?php
+                global $connection;
+
+                if(isset($_GET['delete'])) {
+                    $medicare=$_GET['delete'];
+                    $query_delete="DELETE FROM Person WHERE Medicare LIKE '$medicare'";
+                    $check_query_delete = mysqli_query($connection, $query_delete);
+                    header("Location: people.php");
+                }
+            ?>
 
             </table>   
         </div>
