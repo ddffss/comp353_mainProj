@@ -19,7 +19,6 @@
             $region_name = $row['GroupZone'];
             $region_city = $row['City'];
             $region_zip = $row['Zip'];
-            $region_alert = $row['ZoneLevel'];
         }
     }
 
@@ -28,13 +27,11 @@
         $region_name = $_POST['name'];
         $region_city = $_POST['city'];
         $region_zip = $_POST['zip'];
-        $region_alert = $_POST['alert'];
 
         $query = "UPDATE ZoneLevels zl , ZoneMuni zm , Municipalities m SET ";
         $query .= "GroupZone ='{$region_name}', ";
         $query .= "City ='{$region_city}', ";
-        $query .= "Zip ='{$region_zip}', ";
-        $query .= "ZoneLevel ='{$region_alert}' ";
+        $query .= "Zip ='{$region_zip}' ";
         $query .="WHERE zm.`﻿ZoneName` = zl.GroupZone AND zm.Municipality = m.City AND Zip LIKE '%$region_zip%'";
 
         $update_query = mysqli_query($connection, $query);
@@ -42,7 +39,7 @@
         if(!$update_query) {
             die('QUERY FAILED' . mysqli_error($connection));
         }
-        header("Location: regions.php");
+        header("Location: region-city-zip.php");
 
     }
 
@@ -53,7 +50,7 @@
     <div class="row">
         <div class="col-3"></div>
         <div class="col-6">
-            <form action="./edit-region.php" method="post" enctype="multipart/form-data">
+            <form action="./edit-rcz.php" method="post" enctype="multipart/form-data">
 
                  <div class="edit form-group">
                     <label for="name">Name</label>
@@ -68,11 +65,6 @@
                 <div class="edit form-group">
                     <label for="zip">Zip</label>
                     <input type="text" name="zip" value="<?php echo  $region_zip ; ?>">
-                </div>
-
-                <div class="edit form-group">
-                    <label for="alert">Alert Status</label>
-                    <input type="text" name="alert" value="<?php echo  $region_alert ; ?>">
                 </div>
 
                 <div class="edit form-group">

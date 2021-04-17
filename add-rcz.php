@@ -51,6 +51,11 @@ if(isset($_POST['edit_region'])) {
                 <div>
 
                 <div class="add form-group">
+                    <label for="alert">Alert Status</label>
+                    <input type="text" name="alert">
+                <div>
+
+                <div class="add form-group">
                     <input class="btn btn-primary" type="submit" name="edit_region" value="Add Region">
                 </div>
 

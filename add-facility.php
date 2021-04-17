@@ -9,57 +9,6 @@
 <div class="container">
 
 <?php
-    // if(isset($_GET['edit'])) {
-    //     $facility=$_GET['edit'];
-    //     $query="SELECT * FROM PublicHealthWorker WHERE Name LIKE '$facility'";
-    //     $select_query = mysqli_query($connection, $query);
-    //     while($row = mysqli_fetch_assoc($select_query)) {
-
-    //         $facility_name = $row['Name'];
-    //         $facility_type = $row['CenterType'];
-    //         $facility_phone = $row['Phone'];
-    //         $facility_address = $row['Address'];
-    //         $facility_city = $row['City'];
-    //         $facility_province = $row['Province'];
-    //         $facility_postalcode = $row['Postal Code'];
-    //         $facility_website = $row['Website'];
-    //     }
-
-
-    // }
-
-    // if(isset($_POST['edit_facility'])) {
-
-    //     $facility_name = $_POST['name'];
-    //     $facility_type = $_POST['centertype'];
-    //     $facility_phone = $_POST['phone'];
-    //     $facility_address = $_POST['address'];
-    //     $facility_city = $_POST['city'];
-    //     $facility_province = $_POST['province'];
-    //     $facility_postalcode = $_POST['postalcode'];
-    //     $facility_website = $_POST['website'];
-
-
-    //     $query = "UPDATE PublicHealthCenter SET ";
-    //     $query .= "Name ='{$facility_name}', ";
-    //     $query .= "CenterType ='{ $facility_type}', ";
-    //     $query .= "Phone ='{$facility_phone}' ";
-    //     $query .= "Address ='{$facility_address}', ";
-    //     $query .= "City ='{$facility_city}', ";
-    //     $query .= "Province ='{$facility_province}' ";
-    //     $query .= "PostalCode ='{$facility_postalcode}', ";
-    //     $query .= "Website ='{$facility_website}', ";
-
-    //     $query .="WHERE Name LIKE '%$facility%' "  ;
-    //     $update_query = mysqli_query($connection, $query);
-
-    //     if(!$update_query) {
-    //         die('QUERY FAILED' . mysqli_error($connection));
-    //     }
-    //     header("Location: phfacilities.php");
-
-    // }
-
 
 if(isset($_POST['edit_facility'])) {
 
@@ -67,14 +16,16 @@ if(isset($_POST['edit_facility'])) {
         $facility_type = $_POST['centertype'];
         $facility_phone = $_POST['phone'];
         $facility_address = $_POST['address'];
+        $facility_method = $_POST['testmethod'];
+        $facility_drivethru = isset($_POST['drivethru']) ? 1: 0;
         $facility_city = $_POST['city'];
         $facility_province = $_POST['province'];
         $facility_postalcode = $_POST['postalcode'];
         $facility_website = $_POST['website'];
 
 
-    $query = "INSERT INTO PublicHealthCenter(Name, Centertype, Phone, Address, City, Province, PostalCode, Website) ";
-    $query .= "VALUES('{$facility_name}', '{$facility_type}','{$facility_phone}','{$facility_address}','{$facility_city}','{$facility_province}', '{$facility_postalcode}', '{$facility_website}')";
+    $query = "INSERT INTO PublicHealthCenter(Name, Centertype, Phone, Address, DriveThru, TestMethod, City, Province, PostalCode, Website) ";
+    $query .= "VALUES('{$facility_name}', '{$facility_type}','{$facility_phone}','{$facility_address}','{$facility_drivethru}','{$facility_method}','{$facility_city}','{$facility_province}', '{$facility_postalcode}', '{$facility_website}')";
 
     $create_user_query = mysqli_query($connection, $query);
 
@@ -112,6 +63,20 @@ if(isset($_POST['edit_facility'])) {
                     <label for="medicare">Address</label>
                     <input type="text" name="address">
                 </div>
+
+                <div class="add form-group">
+                    <label for="dob">Test Method</label>
+                        <select name="testmethod" id="testmethod">
+                            <option value="appointment">Appointment</option>
+                            <option value="walk-in">Walk-in</option>
+                            <option value="both">Both</option>
+                        </select>                
+                </div>
+                <div class="add form-group">
+                    <label for="drivethru">Drive Thru</label>
+                    <input type="checkbox" class="symptom" name="drivethru" value="1">
+                </div>
+
 
                 <div class="add form-group">
                     <label for="City">City</label>

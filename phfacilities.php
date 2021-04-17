@@ -53,6 +53,8 @@
             $db_phone = $row['Phone'];
             $db_address = $row['Address'];
             $db_city = $row['City'];
+            $db_testmethod = $row['TestMethod'];
+            $drivethru = $row['DriveThru'];
             $db_province = $row['Province'];
             $db_postalcode = $row['PostalCode'];
             $db_website = $row['Website'];
@@ -60,8 +62,8 @@
             echo "<tr>";
             echo "<td>{$db_name}</td>";
             echo "<td>{$db_centertype}</td>";
-            echo "<td>Testing Method</td>";
-            echo "<td>Yes/No</td>";
+            echo "<td>{$db_testmethod}</td>";
+            echo "<td>{$drivethru}</td>";
             echo "<td>";
             ?>
 

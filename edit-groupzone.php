@@ -60,8 +60,8 @@
                     <input type="text" name="medicare" value="<?php echo $groupzone_medicare; ?>">
                 </div>
 
-                <!-- <div class="edit form-group" style="display:none;"> -->
-                <div class="edit form-group">
+                <div class="edit form-group" style="display:none;">
+                <!-- <div class="edit form-group"> -->
                     <label for="id">ID</label>
                     <input type="text" name="id" value="<?php echo $groupzone_id; ?>">
                 </div>

@@ -5,22 +5,6 @@
 
 
 <!-- search people by address -->
-<div class="container">
-    <div class="row">
-        <div class="col-1"></div>
-        <div class="col-md-auto">
-            <table id="population">
-                    <tr>
-                    <th>Name</th>
-                    <th>Birthday</th>
-                    <th>Medicare Card Number</th>
-                    <th>Phone Number</th>
-                    <th>Citizenship</th>
-                    <th>Email</th>
-                    <th>Mother</th>
-                    <th>Father</th>
-                    </tr>
-
     <?php
     if(isset($_POST['submit'])) {
         $search =$_POST['search'];
@@ -36,10 +20,27 @@
         $count = mysqli_num_rows($select_user_query);
 
         if($count == 0) {
-            echo "<h6>NO RESULT</h6>";
+            echo "<h4>NO RESULT</h4>";
         }
 
-        else {
+        else { ?>
+        <div class="container">
+            <div class="row">
+                <div class="col-1"></div>
+                <div class="col-md-auto">
+                    <table id="population">
+                            <tr>
+                            <th>Name</th>
+                            <th>Birthday</th>
+                            <th>Medicare Card Number</th>
+                            <th>Phone Number</th>
+                            <th>Citizenship</th>
+                            <th>Email</th>
+                            <th>Mother</th>
+                            <th>Father</th>
+                            </tr>
+
+        <?php
 
             echo "<h3>Here's the list of People who lives at ".$search."</h3>";
             while($row = mysqli_fetch_array($select_user_query)) {

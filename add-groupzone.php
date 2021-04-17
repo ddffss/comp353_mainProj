@@ -13,8 +13,8 @@ if(isset($_POST['edit_groupzone'])) {
     $groupzone_medicare = $_POST['medicare'];
 
 
-    $query = "INSERT INTO GroupZone(ZoneName ,Medicare) ";
-    $query .= "VALUES('{$groupzone_name}', '{$groupzone_medicare}')";
+    $query = "INSERT INTO `GroupZone` (`ZoneName`, `Medicare`) ";
+    $query .= "VALUES('{$groupzone_name}','{$groupzone_medicare}')";
 
     $create_user_query = mysqli_query($connection, $query);
 

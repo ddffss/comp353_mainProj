@@ -19,6 +19,8 @@
             $facility_type = $row['CenterType'];
             $facility_phone = $row['Phone'];
             $facility_address = $row['Address'];
+            $facility_method = $row['TestMethod'];
+            $facility_drivethru = $row['DriveThru'];
             $facility_city = $row['City'];
             $facility_province = $row['Province'];
             $facility_postalcode = $row['PostalCode'];
@@ -34,6 +36,8 @@
         $facility_type = $_POST['centertype'];
         $facility_phone = $_POST['phone'];
         $facility_address = $_POST['address'];
+        $facility_method = $_POST['testmethod'];
+        $facility_drivethru = isset($_POST['drivethru']) ? 1: 0;
         $facility_city = $_POST['city'];
         $facility_province = $_POST['province'];
         $facility_postalcode = $_POST['postalcode'];
@@ -46,6 +50,8 @@
         $query .= "Phone ='{$facility_phone}', ";
         $query .= "Address ='{$facility_address}', ";
         $query .= "City ='{$facility_city}', ";
+        $query .= "TestMethod ='{$facility_method}', ";
+        $query .= "DriveThru ='{$facility_drivethru}', ";
         $query .= "Province ='{$facility_province}', ";
         $query .= "PostalCode ='{$facility_postalcode}', ";
         $query .= "Website ='{$facility_website}' ";
@@ -86,6 +92,45 @@
                 <div class="edit form-group">
                     <label for="medicare">Address</label>
                     <input type="text" name="address" value="<?php echo  $facility_address; ?>">
+                </div>
+
+
+
+                <div class="edit form-group">
+                    <label for="testermethod">Test Method</label>
+                        <select name="testmethod" id="">
+
+                                <?php 
+                                if($facility_method =='Appointment') {
+                                    echo "<option value='Appointment'>Appointment</option>";
+                                    echo "<option value='Walk-In'>Walk-in</option>"; 
+                                    echo "<option value='Both'>Both</option>";
+
+                                }
+                                
+                                else if($facility_method =='Walk-In') {
+                                    echo "<option value='Walk-In'>Walk-in</option>";
+                                    echo "<option value='Appointment'>Appointment</option>";
+                                    echo "<option value='Both'>Both</option>";
+
+                                } else {
+                                    echo "<option value='Both'>Both</option>";
+                                    echo "<option value='Appointment'>Appointment</option>";
+                                    echo "<option value='Walk-In'>Walk-in</option>";
+
+                                }
+                                ?>
+                            </select>
+
+                        <!-- <select name="testmethod" id="testmethod">
+                            <option value="appointment">Appointment</option>
+                            <option value="walk-in">Walk-in</option>
+                            <option value="both">Both</option>
+                        </select>                 -->
+                </div>
+                <div class="edit form-group">
+                    <label for="drivethru">Drive Thru</label>
+                    <input type="checkbox" class="symptom" name="drivethru" value="1">
                 </div>
 
                 <div class="edit form-group">

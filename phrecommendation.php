@@ -9,27 +9,25 @@
         
 
     <div class="row"> 
-        <div class="col-6">
-            <h3 class="page-title"> List of Group Zones</h3>
+        <div class="col-9">
+            <h3 class="page-title"> Public Health Information and Recommendations: </h3>
 
         </div>
 
-        <div class="col-6">
-            <a class="add-function" href='./add-groupzone.php'><i class="fa fa-plus"></i> Add Group Zones</a>
+        <div class="col-3">
+            <a class="add-function" href='./add-recommendation.php'><i class="fa fa-plus"></i> Add Recommendation</a>
         </div>
     </div>
 
             <table id="population">
                     <tr>
-                    <th>Group Zone Name</th>      
-                    <th>Medicare</th>
-                    <th>Actions</th>
-
+                    <th>Recommendations</th>      
+                    <th style="text-align:center">Actions</th>
                     </tr>
 
             <?php
                 
-                $query ="SELECT * FROM GroupZone";
+                $query ="SELECT * FROM HealthRecommendations";
 
                 // function below will pull out the result
                 $select_user_query = (mysqli_query($connection, $query));
@@ -39,14 +37,12 @@
 
                 while($row = mysqli_fetch_array($select_user_query)) {
 
-                $db_groupzone = $row['ZoneName'];
-                $db_medicare = $row['Medicare'];
-                $db_id = $row['id'];
-
+                $recommendation = $row['Recommendation'];
+                $id= $row['RecID'];
+           
                    echo "<tr>";
-                   echo "<td>{$db_groupzone}</td>";
-                   echo "<td>{$db_medicare}</td>";
-                   echo "<td class=\"action\"> <a href='groupzones.php?delete={$db_id}'><i class=\"fa fa-trash\"> </i></a> <a href='edit-groupzone.php?edit={$db_id}'><i class=\"fa fa-pencil\"> </i></a></td>";
+                   echo "<td>{$recommendation}</td>";
+                   echo "<td class=\"action\"> <a href='phrecommendation.php?delete={$id}'><i class=\"fa fa-trash\"> </i></a> <a href='edit-recommendation.php?edit={$id}'><i class=\"fa fa-pencil\"> </i></a></td>";
 
                    echo "</tr>";
                 }
@@ -58,9 +54,9 @@
 
               if(isset($_GET['delete'])) {
                 $id = $_GET['delete'];
-                $query_delete="DELETE FROM GroupZone WHERE id LIKE '%$id%'";
+                $query_delete="DELETE FROM HealthRecommendations WHERE RecID LIKE '$id'";
                 $check_query_delete = mysqli_query($connection, $query_delete);
-                header("Location: groupzones.php");
+                header("Location: phrecommendation.php");
               }
         ?>
 
