@@ -48,7 +48,7 @@
                     </tr>
 
             <?php
-                $query ="SELECT * FROM Person";
+                $query ="SELECT * FROM Person WHERE Deleted = 0";
 
                 // function below will pull out the result
                 $select_user_query = (mysqli_query($connection, $query));

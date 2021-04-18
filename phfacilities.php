@@ -36,7 +36,7 @@
         </tr>
 
     <?php
-        $query ="SELECT * FROM PublicHealthCenter";
+        $query ="SELECT * FROM PublicHealthCenter WHERE Deleted = 0";
 
         // function below will pull out the result
         $select_user_query = (mysqli_query($connection, $query));

@@ -29,7 +29,7 @@
 
             <?php
                 
-                $query ="SELECT * FROM PublicHealthWorker";
+                $query ="SELECT * FROM PublicHealthWorker WHERE Deleted = 0";
 
                 // function below will pull out the result
                 $select_user_query = (mysqli_query($connection, $query));

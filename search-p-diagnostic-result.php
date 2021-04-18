@@ -10,7 +10,7 @@
     if(isset($_POST['submit'])) {
         $search =$_POST['search'];
 
-        $query ="SELECT * FROM Person p2 , Diagnostic d WHERE d.PatientMedicare = p2.Medicare AND d.DateOfResult LIKE '%$search%' ORDER BY d.`Result` DESC";
+        $query ="SELECT * FROM Person p2 , Diagnostic d WHERE p2.Deleted = 0 AND d.Deleted = 0 AND d.PatientMedicare = p2.Medicare AND d.DateOfResult LIKE '%$search%' ORDER BY d.`Result` DESC";
 
         $select_user_query = mysqli_query($connection, $query);
 

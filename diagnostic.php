@@ -33,7 +33,7 @@
 
     <?php
     
-        $query ="SELECT * FROM Person p2 , Diagnostic d WHERE d.PatientMedicare = p2.Medicare ORDER BY d.`Result` DESC";
+        $query ="SELECT * FROM Person p2 , Diagnostic d WHERE d.PatientMedicare = p2.Medicare AND d.Deleted = 0 AND p2.Deleted = 0 ORDER BY d.`Result` DESC";
 
         $select_user_query = (mysqli_query($connection, $query));
         if(!$select_user_query) {

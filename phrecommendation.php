@@ -27,7 +27,7 @@
 
             <?php
                 
-                $query ="SELECT * FROM HealthRecommendations";
+                $query ="SELECT * FROM HealthRecommendations WHERE Deleted = 0";
 
                 // function below will pull out the result
                 $select_user_query = (mysqli_query($connection, $query));

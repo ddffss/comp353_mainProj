@@ -9,7 +9,7 @@
     if(isset($_POST['submit'])) {
         $search =$_POST['search'];
 
-        $query ="SELECT * FROM Person WHERE Address LIKE '%$search%' ";
+        $query ="SELECT * FROM Person WHERE Address LIKE '%$search%' AND Deleted = 0";
         $select_user_query = mysqli_query($connection, $query);
 
         if(!$select_user_query) {

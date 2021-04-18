@@ -34,7 +34,7 @@
             <?php
                 
 
-                $query="SELECT * FROM ZoneLevels zl , ZoneMuni zm , Municipalities m WHERE zm.`﻿ZoneName` = zl.GroupZone AND zm.Municipality = m.City GROUP BY zl.GroupZone";
+                $query="SELECT * FROM ZoneLevels zl , ZoneMuni zm , Municipalities m WHERE zl.Deleted = 0 AND zm.Deleted = 0 AND m.Deleted = 0 AND zm.`﻿ZoneName` = zl.GroupZone AND zm.Municipality = m.City GROUP BY zl.GroupZone";
 
                 // function below will pull out the result
                 $select_user_query = (mysqli_query($connection, $query));
