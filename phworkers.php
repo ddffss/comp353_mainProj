@@ -21,6 +21,7 @@
 
             <table id="population">
                     <tr>
+                    <th>Name</th>      
                     <th>Medicare</th>      
                     <th>Work Facility</th>
                     <th>Shift</th>
@@ -29,7 +30,7 @@
 
             <?php
                 
-                $query ="SELECT * FROM PublicHealthWorker WHERE Deleted = 0";
+                $query ="SELECT * FROM PublicHealthWorker WHERE Deleted = 0 GROUP BY Medicare ";
 
                 // function below will pull out the result
                 $select_user_query = (mysqli_query($connection, $query));
@@ -42,8 +43,22 @@
                 $db_medicare = $row['Medicare'];
                 $db_workFacility = $row['WorkFacility'];
                 $db_shift = $row['Shift'];
+                $db_shiftStart = $row['ShiftStart'];
+                $db_shiftEnd = $row['ShiftEnd'];
            
                    echo "<tr>";
+                    ?> 
+                <?php
+                   $queryName = "SELECT * FROM Person WHERE Medicare LIKE '%$db_medicare%' GROUP BY Medicare"; 
+                   $select_query_name = (mysqli_query($connection, $queryName));
+                   if(!$select_query_name) {
+                       die("QUERY FAILED". mysqli_error($connection));
+                   }
+                       while($row = mysqli_fetch_array($select_query_name)){
+                            $firstName= $row['FirstName'];
+                            $lastName = $row['LastName'];
+                }
+                   echo "<td>{$firstName} {$lastName}</td>";
                    echo "<td>{$db_medicare}</td>";
                    echo "<td>{$db_workFacility}</td>";
                    echo "<td>{$db_shift}</td>";
@@ -53,6 +68,7 @@
                 }
 
           ?>
+
         
         <?php
             global $connection;

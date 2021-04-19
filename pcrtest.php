@@ -35,15 +35,6 @@
         </div>
     </div>
 
-
-    <table class="facility-table">
-        <tr>
-        <th>Date Of Test</th>
-        <th>Date of Result</th>
-        <th>Result</th>
-        <th>Symptom Progress</th>
-        </tr>
-
     <?php
         $medicare =$_SESSION['medCardNum'];
         $query ="SELECT * FROM Person, Diagnostic WHERE Person.Medicare = Diagnostic.PatientMedicare AND Person.Medicare LIKE '$medicare'";
@@ -53,24 +44,40 @@
             die("QUERY FAILED". mysqli_error($connection));
         }
 
+        $count = mysqli_num_rows($select_user_query);
+
+        if($count == 0) {
+            echo "<h4>NO RESULT</h4>";
+        }
+        else {
+
+            while($row = mysqli_fetch_array($select_user_query)) {
 
 
-        while($row = mysqli_fetch_array($select_user_query)) {
-
-            $db_dateoftest = $row['DateOfTest'];
-            $db_dateofresult = $row['DateOfResult'];
-            $db_result = $row['Result'];
-          
-
-            echo "<tr>";
-            echo "<td>{$db_dateoftest}</td>";
-            echo "<td>{$db_dateofresult}</td>";
-            echo "<td>{$db_result}</td>";
-            echo "<td><a href='./symptom-progress.php'>Symptom Progress</a></td>";
-        }  
-        
-        $_SESSION['dateofresult'] = $db_dateofresult;
-        
+                echo "<table class=\"facility-table\">";
+                echo "<tr>";
+                echo "<th>Date Of Test</th>";
+                echo "<th>Date of Result</th>";
+                echo "<th>Result</th>";
+                echo "<th>Symptom Progress</th>";
+                echo "</tr>";
+    
+                $db_dateoftest = $row['DateOfTest'];
+                $db_dateofresult = $row['DateOfResult'];
+                $db_result = $row['Result'];
+              
+    
+                echo "<tr>";
+                echo "<td>{$db_dateoftest}</td>";
+                echo "<td>{$db_dateofresult}</td>";
+                echo "<td>{$db_result}</td>";
+                echo "<td><a href='./symptom-progress.php'>Symptom Progress</a></td>";
+    
+            }  
+    
+            $_SESSION['dateofresult'] = $db_dateofresult;
+    
+        }
         ?>
         
 

@@ -39,7 +39,6 @@
     <table class="facility-table">
         <tr>
         <th>Date </th>
-        <th>Time</th>
         <th>Fever</th>
         <th>Cough</th>
         <th>Difficulty Breathing</th>
@@ -68,7 +67,6 @@
         while($row = mysqli_fetch_array($select_user_query)) {
 
             $date = $row['DateOfSymptom'];
-            $time= $row['Time'];
             $fever = $row['Fever'];
             $cough = $row['Cough'];
             $difficultybreathing = $row['DifficultyBreathing'];
@@ -87,7 +85,6 @@
 
             echo "<tr>";
             echo "<td>{$date}</td>";
-            echo "<td>{$time}</td>";
             echo "<td>{$fever}</td>";
             echo "<td>{$cough}</td>";
             echo "<td>{$difficultybreathing}</td>";

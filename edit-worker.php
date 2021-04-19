@@ -10,13 +10,15 @@
 <?php
     if(isset($_GET['edit'])) {
         $medicare=$_GET['edit'];
-        $query="SELECT * FROM PublicHealthWorker WHERE Medicare LIKE '$medicare'";
+        $query="SELECT * FROM PublicHealthWorker WHERE Medicare LIKE '$medicare' GROUP BY Medicare";
         $select_query = mysqli_query($connection, $query);
         while($row = mysqli_fetch_assoc($select_query)) {
 
             $worker_medicare = $row['Medicare'];
             $worker_facility = $row['WorkFacility'];
             $worker_shift = $row['Shift'];
+            $worker_shiftStart = $row['ShiftStart'];
+            $worker_shiftEnd = $row['ShiftEnd'];
         }
     }
 
@@ -25,12 +27,16 @@
         $worker_medicare = $_POST['medicare'];
         $worker_facility = $_POST['workfacility'];
         $worker_shift = $_POST['shift'];
+        $worker_shiftStart = $_POST['shiftStart'];
+        $worker_shiftEnd = $_POST['shiftEnd'];
 
 
         $query = "UPDATE PublicHealthWorker SET ";
         $query .= "Medicare ='{$worker_medicare}', ";
         $query .= "WorkFacility ='{$worker_facility}', ";
-        $query .= "Shift ='{$worker_shift}' ";
+        $query .= "Shift ='{$worker_shift}', ";
+        $query .= "ShiftStart ='{$worker_shiftStart}', ";
+        $query .= "ShiftEnd ='{$worker_shiftEnd}' ";
         $query .="WHERE Medicare LIKE '%$worker_medicare%' "  ;
         $update_query = mysqli_query($connection, $query);
 
@@ -63,6 +69,20 @@
                 <div class="edit form-group">
                     <label for="dob">Shift</label>
                     <input type="text" name="shift" value="<?php echo $worker_shift;?>">
+                </div>
+
+                <!-- <div class="edit form-group" style="display:none;"> -->
+                <div class="edit form-group">
+
+                    <label for="shiftStart">Shift Start</label>
+                    <input type="text" name="shiftStart" value="<?php echo $worker_shiftStart;?>">
+                </div>
+
+                <!-- <div class="edit form-group" style="display:none;"> -->
+                <div class="edit form-group">
+
+                    <label for="shiftEnd">Shift End</label>
+                    <input type="text" name="shiftEnd" value="<?php echo $worker_shiftEnd;?>">
                 </div>
 
                 <div class="edit form-group">

@@ -12,10 +12,14 @@ if(isset($_POST['edit_worker'])) {
     $worker_medicare = $_POST['medicare'];
     $worker_facility = $_POST['workfacility'];
     $worker_shift = $_POST['shift'];
+    $worker_shiftStart = $_POST['shiftstart'];
+    $worker_shiftEnd = $_POST['shiftend'];
+
+    // INSERT INTO `hec353_4`.`PublicHealthWorker` (`Medicare`, `WorkFacility`, `Shift`, `ShiftStart`, `ShiftEnd`) VALUES ('SMIJ-9004-1403', 'MUHC', 'Morning', '2021-01-10', '2021-01-30');
 
 
-    $query = "INSERT INTO PublicHealthWorker(Medicare, WorkFacility, Shift) ";
-    $query .= "VALUES('{$worker_medicare}', '{$worker_facility}','{$worker_shift}')";
+    $query = "INSERT INTO PublicHealthWorker(`Medicare`, `WorkFacility`, `Shift`, `ShiftStart`, `ShiftEnd`) ";
+    $query .= "VALUES('{$worker_medicare}', '{$worker_facility}','{$worker_shift}','{$worker_shiftStart}','{$worker_shiftEnd}')";
 
     $create_user_query = mysqli_query($connection, $query);
 
@@ -53,7 +57,21 @@ if(isset($_POST['edit_worker'])) {
 
                 <div class="add form-group">
                     <label for="shift">Shift</label>
-                    <input type="text" name="shift">
+                        <select name="shift" id="shift">
+                            <option value="Morning">Morning</option>
+                            <option value="Evening">Evening</option>
+                            <option value="Night">Night</option>
+                        </select>            
+                    <div>
+
+                <div class="add form-group">
+                    <label for="shiftstart">Shift Start</label>
+                    <input type="date" name="shiftstart">
+                <div>
+
+                <div class="add form-group">
+                    <label for="shiftend">Shift End</label>
+                    <input type="date" name="shiftend">
                 <div>
 
                 <div class="add form-group">
