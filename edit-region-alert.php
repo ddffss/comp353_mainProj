@@ -48,7 +48,7 @@
     <div class="row">
         <div class="col-3"></div>
         <div class="col-6">
-            <form action="./edit-region.php" method="post" enctype="multipart/form-data">
+            <form action="./edit-region-alert.php" method="post" enctype="multipart/form-data">
 
                  <div class="edit form-group">
                     <label for="name">Name</label>
