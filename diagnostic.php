@@ -16,8 +16,10 @@
 
         <div class="col-6 peopleSearch">
         <form action="search-p-diagnostic-result.php" method="post">
-                <input type="text" placeholder="Search by date..." name="search">
+                 <input type="date" placeholder="Start date..." name="start">
+                <input type="date" placeholder="End date..." name="end">
                 <button class="btn btn-primary" name="submit" type="submit">Search</button>
+
         </form>
         </div>
     </div>
@@ -68,10 +70,14 @@
 
         <div class="col-6 peopleSearch">
         <form action="search-p-diagnostic-result.php" method="post">
-                <input type="text" placeholder="Search by date..." name="search">
+                <input type="date" placeholder="Start date..." name="start">
+                <input type="date" placeholder="End date..." name="end">
+
                 <button class="btn btn-primary" name="submit" type="submit">Search</button>
         </form>
         </div>
+
+
     </div>
 
     <table id="population">

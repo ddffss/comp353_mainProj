@@ -8,9 +8,10 @@
 
     <?php
     if(isset($_POST['submit'])) {
-        $search =$_POST['search'];
+        $start =$_POST['start'];
+        $end =$_POST['end'];
 
-        $query ="SELECT * FROM Person p2 , Diagnostic d WHERE p2.Deleted = 0 AND d.Deleted = 0 AND d.PatientMedicare = p2.Medicare AND d.DateOfResult LIKE '%$search%' ORDER BY d.`Result` DESC";
+        $query ="SELECT * FROM Person p2 , Diagnostic d WHERE p2.Deleted = 0 AND d.Deleted = 0 AND d.PatientMedicare = p2.Medicare AND d.DateOfResult BETWEEN '$start' and '$end'";
 
         $select_user_query = mysqli_query($connection, $query);
 
@@ -41,7 +42,7 @@
                 </tr>
 
         <?php 
-            echo "<h3>Here's the list people who got the test result on ".$search."</h3>";
+            echo "<h3>Here's the list people who got the test result between $start and $end </h3>";
             while($row = mysqli_fetch_array($select_user_query)) {
 
                 $diagnostic_firstname = $row['FirstName'];

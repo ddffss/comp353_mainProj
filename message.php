@@ -32,6 +32,11 @@
                     </div>
 
                     <div class="col-6">
+                    <form action="search-message.php" method="post">
+                        <input type="date" placeholder="Start date..." name="start">
+                        <input type="date" placeholder="End date..." name="end">
+                        <button class="btn btn-primary" name="submit" type="submit">Search</button>
+                    </form>
                     </div>
                 </div>
 
