@@ -21,7 +21,7 @@ if(isset($_POST['login'])) {
     $password = mysqli_real_escape_string($connection, $password);
 
 
-    $query ="SELECT * FROM Person WHERE Medicare = '$username' && FirstName = '$password'" ;
+    $query ="SELECT * FROM Person WHERE Medicare = '$username' && DOB = '$password'" ;
 
     // function below will pull out the result
     $select_user_query = (mysqli_query($connection, $query));
@@ -52,7 +52,7 @@ if(isset($_POST['login'])) {
     }
 
     if ($username !== $db_medCardNum && $password !==  $db_firstName) {
-        header("Location: ../login.php");
+        header("Location: ../index.php");
     }
 
     else {

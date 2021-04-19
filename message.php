@@ -64,9 +64,11 @@
 
                 <!-- <table style="border:1px black solid";> -->
                 <table>
+                <br>
                 <tr><b><?php echo $db_guidelines ?></b></tr>
                 <tr><br><?php echo $db_messageDescription ?></tr>
                 <tr><br><?php echo 'recieved on'.$db_date. ' at '. $db_time ?></tr>
+                </br>
                 </table>
                 <hr>
 

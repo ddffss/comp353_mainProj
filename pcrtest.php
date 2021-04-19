@@ -51,17 +51,18 @@
         }
         else {
 
+
+            echo "<table class=\"facility-table\">";
+            echo "<tr>";
+            echo "<th>Date Of Test</th>";
+            echo "<th>Date of Result</th>";
+            echo "<th>Result</th>";
+            echo "<th>Symptom Progress</th>";
+            echo "</tr>";
+
             while($row = mysqli_fetch_array($select_user_query)) {
 
 
-                echo "<table class=\"facility-table\">";
-                echo "<tr>";
-                echo "<th>Date Of Test</th>";
-                echo "<th>Date of Result</th>";
-                echo "<th>Result</th>";
-                echo "<th>Symptom Progress</th>";
-                echo "</tr>";
-    
                 $db_dateoftest = $row['DateOfTest'];
                 $db_dateofresult = $row['DateOfResult'];
                 $db_result = $row['Result'];

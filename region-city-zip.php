@@ -15,7 +15,7 @@
         </div>
 
         <div class="col-6">
-            <a class="add-function" href='./add-rcz.php'><i class="fa fa-plus"></i> Add Region</a>
+            <a class="add-function" href='./add-rcz.php'><i class="fa fa-plus"></i> Add City</a>
         </div>
     </div>
 
@@ -30,8 +30,10 @@
 
             <?php
                 
-
-                $query="SELECT * FROM ZoneLevels zl , ZoneMuni zm , Municipalities m WHERE zl.Deleted = 0 AND zm.Deleted = 0 AND m.Deleted = 0 AND zm.`﻿ZoneName` = zl.GroupZone AND zm.Municipality = m.City GROUP BY m.City ORDER BY zm.`﻿ZoneName` ASC";
+                if(isset($_GET['edit'])) {
+                    $groupzonename=$_GET['edit'];
+            
+                $query="SELECT * FROM ZoneLevels zl , ZoneMuni zm , Municipalities m WHERE zl.Deleted = 0 AND zm.Deleted = 0 AND m.Deleted = 0 AND zm.`﻿ZoneName` = zl.GroupZone AND zm.Municipality = m.City AND zm.`﻿ZoneName` LIKE '%$groupzonename%'";
 
                 // function below will pull out the result
                 $select_user_query = (mysqli_query($connection, $query));
@@ -56,6 +58,7 @@
 
                    echo "</tr>";
                 }
+            }
 
           ?>
         
@@ -66,7 +69,7 @@
                 $zip = $_GET['delete'];
                 $query_delete="DELETE FROM Municipalities WHERE Zip LIKE '$zip'";
                 $check_query_delete = mysqli_query($connection, $query_delete);
-                header("Location: region-city-zip.php");
+                header("Location: regions.php");
               }
         ?>
 

@@ -67,9 +67,32 @@
                 </div>
 
                 <div class="edit form-group">
-                    <label for="dob">Shift</label>
-                    <input type="text" name="shift" value="<?php echo $worker_shift;?>">
-                </div>
+                    <label for="shift">Shift</label>
+                        <select name="shift" id="shift">
+
+                        <?php 
+                                if($worker_shift =='Morning') {
+                                    echo "<option value=\"Morning\">Morning</option>";
+                                    echo "<option value=\"Evening\">Evening</option>"; 
+                                    echo "<option value=\"Night\">Night</option>";
+
+                                }
+                                
+                                else if($worker_shift =='Evening') {
+                                    echo "<option value=\"Evening\">Evening</option>"; 
+                                    echo "<option value=\"Morning\">Morning</option>";
+                                    echo "<option value=\"Night\">Night</option>";
+
+                                } 
+                                else if($worker_shift =='Night') {
+                                    echo "<option value=\"Night\">Night</option>";
+                                    echo "<option value=\"Morning\">Morning</option>";
+                                    echo "<option value=\"Evening\">Evening</option>"; 
+
+                                }
+                                ?>
+                        </select>   
+                    </div>
 
                 <!-- <div class="edit form-group" style="display:none;"> -->
                 <div class="edit form-group">

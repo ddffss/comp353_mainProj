@@ -35,24 +35,6 @@
         </div>
     </div>
 
-
-    <table class="facility-table">
-        <tr>
-        <th>Date </th>
-        <th>Fever</th>
-        <th>Cough</th>
-        <th>Difficulty Breathing</th>
-        <th>Loss Of Taste/Smell</th>
-        <th>Nausea</th>
-        <th>Stomach Aches</th>
-        <th>Vomiting</th>
-        <th>Headache</th>
-        <th>MusclePain</th>
-        <th>Diarrhea</th>
-        <th>Sorethroat</th>
-        <th>Others</th>
-        </tr>
-
     <?php
        $medicare =$_SESSION['medCardNum'];
        $dateofresult =  $_SESSION['dateofresult'];
@@ -63,6 +45,29 @@
         if(!$select_user_query) {
             die("QUERY FAILED". mysqli_error($connection));
         }
+        $count = mysqli_num_rows($select_user_query);
+
+        if($count == 0) {
+            echo "<h4>NO RESULT</h4>";
+        }
+        else {
+
+             echo "<table class=\"facility-table\">";
+             echo "<tr>";
+             echo "<th>Date </th>";
+             echo "<th>Fever</th>";
+             echo "<th>Cough</th>";
+             echo "<th>Difficulty Breathing</th>";
+             echo "<th>Loss Of Taste/Smell</th>";
+             echo "<th>Nausea</th>";
+             echo "<th>Stomach Aches</th>";
+             echo "<th>Vomiting</th>";
+             echo "<th>Headache</th>";
+             echo "<th>MusclePain</th>";
+             echo "<th>Diarrhea</th>";
+             echo "<th>Sorethroat</th>";
+             echo "<th>Others</th>";
+             echo "</tr>";
 
         while($row = mysqli_fetch_array($select_user_query)) {
 
@@ -97,7 +102,7 @@
             echo "<td>{$diarrhea}</td>";
             echo "<td>{$sorethroat}</td>";
             echo "<td>{$others}</td>";
-        }    ?>
+        }    }?>
 
            
     </table>  

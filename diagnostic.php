@@ -16,7 +16,7 @@
 
         <div class="col-6 peopleSearch">
         <form action="search-p-diagnostic-result.php" method="post">
-                <input type="text" placeholder="Search by address..." name="search">
+                <input type="text" placeholder="Search by date..." name="search">
                 <button class="btn btn-primary" name="submit" type="submit">Search</button>
         </form>
         </div>
@@ -58,18 +58,17 @@
             echo "<td>{$diagnostic_result}</td>";
             echo "</tr>";
     } ?>
-
-    </table>   
+    </table>
 
     <div class="row"> 
         <div class="col-6">
-            <h3 class="page-title"> Regions Covid-19 Report</h3>
+            <h3 class="page-title"> Public Health Worker Covid-19 Report</h3>
 
         </div>
 
         <div class="col-6 peopleSearch">
         <form action="search-p-diagnostic-result.php" method="post">
-                <input type="text" placeholder="Search by address..." name="search">
+                <input type="text" placeholder="Search by date..." name="search">
                 <button class="btn btn-primary" name="submit" type="submit">Search</button>
         </form>
         </div>
@@ -78,37 +77,12 @@
     <table id="population">
             <tr>
             <th>Name</th>      
-            <th># of People (+) from covid</th>
-            <th># of People (-) from covid</th>
-            <th>Alert History</th>
+            <th>Work Facility</th>
+            <th>List of Employees she Worked with</th>
             </tr>
 
 
     </table>   
-
-<div class="row"> 
-    <div class="col-6">
-        <h3 class="page-title"> Public Health Worker Covid-19 Report</h3>
-
-    </div>
-
-    <div class="col-6 peopleSearch">
-    <form action="search-p-diagnostic-result.php" method="post">
-            <input type="text" placeholder="Search by address..." name="search">
-            <button class="btn btn-primary" name="submit" type="submit">Search</button>
-    </form>
-    </div>
-</div>
-
-<table id="population">
-        <tr>
-        <th>Name</th>      
-        <th>Work Facility</th>
-        <th>List of Employees she Worked with</th>
-        </tr>
-
-
-</table>   
 
 
 </div>

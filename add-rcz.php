@@ -35,7 +35,7 @@ if(isset($_POST['edit_region'])) {
 
         <div class="col-md-4"></div>
         <div class="col-md-auto">
-            <h3>Add Employee</h3>
+            <h3>Add Region</h3>
 
             <form action="./add-region.php" method="post">
 
@@ -48,11 +48,6 @@ if(isset($_POST['edit_region'])) {
                 <div class="add form-group">
                     <label for="zip">Zip</label>
                     <input type="text" name="zip">
-                <div>
-
-                <div class="add form-group">
-                    <label for="alert">Alert Status</label>
-                    <input type="text" name="alert">
                 <div>
 
                 <div class="add form-group">

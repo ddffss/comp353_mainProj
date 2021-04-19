@@ -10,7 +10,7 @@
 <?php
     if(isset($_GET['edit'])) {
         $id=$_GET['edit'];
-        $query="SELECT * FROM GroupZone WHERE id LIKE '$id'";
+        $query="SELECT * FROM GroupZone WHERE id LIKE '%$id%'";
         $select_query = mysqli_query($connection, $query);
         while($row = mysqli_fetch_assoc($select_query)) {
 

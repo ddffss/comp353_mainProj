@@ -8,10 +8,10 @@
 <div class="container">
 
 <?php
+  
     if(isset($_GET['edit'])) {
-        $name=$_GET['edit'];
-        // $query="SELECT * FROM ZoneLevels zl , ZoneMuni zm , Municipalities m WHERE zm.`﻿ZoneName` = zl.GroupZone AND zm.Municipality = m.City AND zm.`﻿ZoneName` LIKE '%$name%'";
-        $query="SELECT * FROM ZoneLevels WHERE GroupZone LIKE '%$name%'";
+        $groupzonename=$_GET['edit'];
+        $query="SELECT * FROM ZoneLevels WHERE GroupZone LIKE '%$groupzonename%'";
 
         $select_query = mysqli_query($connection, $query);
 
@@ -20,7 +20,8 @@
             $region_name = $row['GroupZone'];
             $region_alert = $row['ZoneLevel'];
         }
-    }
+  }
+
 
     if(isset($_POST['edit_region'])) {
 
@@ -30,7 +31,7 @@
         $query = "UPDATE ZoneLevels SET ";
         $query .= "GroupZone ='{$region_name}', ";
         $query .= "ZoneLevel ='{$region_alert}' ";
-        // $query .= "WHERE GroupZone LIKE '%$region_name%'";
+        $query .= "WHERE GroupZone LIKE '%$region_name%'";
 
         $update_query = mysqli_query($connection, $query);
 
@@ -48,7 +49,7 @@
     <div class="row">
         <div class="col-3"></div>
         <div class="col-6">
-            <form action="./edit-region.php" method="post" enctype="multipart/form-data">
+            <form action="./edit-region-alert.php" method="post" enctype="multipart/form-data">
 
                  <div class="edit form-group">
                     <label for="name">Name</label>
@@ -57,7 +58,28 @@
 
                 <div class="edit form-group">
                     <label for="alert">Alert Status</label>
-                    <input type="text" name="alert" value="<?php echo  $region_alert ; ?>">
+                    <select name="alert" id="alert">
+                    <?php 
+                            if($region_alert =='1') {
+                                echo "<option value=1>1</option>";
+                                echo "<option value=2>2</option>";
+                            }
+                            else if($region_alert =='2') {
+                                echo "<option value=2>2</option>";
+                                echo "<option value=1>1</option>";
+                                echo "<option value=3>3</option>";
+                            }
+                            else if($region_alert =='3') {
+                                echo "<option value=3>3</option>";
+                                echo "<option value=2>2</option>";
+                                echo "<option value=4>4</option>";
+                            }
+                            else if($region_alert =='4') {
+                                echo "<option value=4>4</option>";
+                                echo "<option value=3>3</option>";
+                            }
+                            ?>
+                    </select>                  
                 </div>
 
                 <div class="edit form-group">

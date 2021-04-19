@@ -15,7 +15,6 @@
         $select_query = mysqli_query($connection, $query);
         while($row = mysqli_fetch_assoc($select_query)) {
 
-            $medicare = $row['Medicare'];
             $firstname = $row['FirstName'];
             $lastname = $row['LastName'];
             $dob = $row['DOB'];
@@ -50,7 +49,6 @@
         $parent2 = $_POST['father'];
 
         $query = "UPDATE Person SET ";
-        $query .= "Medicare ='{$medicare}', ";
         $query .= "FirstName ='{$firstname}', ";
         $query .= "LastName ='{$lastname}', ";
         $query .= "DOB ='{$dob}', ";

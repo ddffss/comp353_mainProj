@@ -10,13 +10,11 @@
 <?php
     if(isset($_GET['edit'])) {
         $zip=$_GET['edit'];
-        $query="SELECT * FROM ZoneLevels zl , ZoneMuni zm , Municipalities m WHERE zm.`﻿ZoneName` = zl.GroupZone AND zm.Municipality = m.City AND Zip LIKE '$zip'";
-
+        $query="SELECT * FROM ZoneLevels zl , ZoneMuni zm , Municipalities m WHERE zl.Deleted = 0 AND zm.Deleted = 0 AND m.Deleted = 0 AND zm.`﻿ZoneName` = zl.GroupZone AND zm.Municipality = m.City AND m.Zip LIKE '%$zip%'";
         $select_query = mysqli_query($connection, $query);
 
         while($row = mysqli_fetch_assoc($select_query)) {
-
-            $region_name = $row['GroupZone'];
+            $region_zoneName = $row['GroupZone'];
             $region_city = $row['City'];
             $region_zip = $row['Zip'];
         }
@@ -24,22 +22,21 @@
 
     if(isset($_POST['edit_region'])) {
 
-        $region_name = $_POST['name'];
+        $region_zoneName = $_POST['zoneName'];
         $region_city = $_POST['city'];
         $region_zip = $_POST['zip'];
 
-        $query = "UPDATE ZoneLevels zl , ZoneMuni zm , Municipalities m SET ";
-        $query .= "GroupZone ='{$region_name}', ";
+        $query = "UPDATE Municipalities SET ";
         $query .= "City ='{$region_city}', ";
         $query .= "Zip ='{$region_zip}' ";
-        $query .="WHERE zm.`﻿ZoneName` = zl.GroupZone AND zm.Municipality = m.City AND Zip LIKE '%$region_zip%'";
+        $query .="WHERE Zip LIKE '%$region_zip%'";
 
         $update_query = mysqli_query($connection, $query);
 
         if(!$update_query) {
             die('QUERY FAILED' . mysqli_error($connection));
         }
-        header("Location: region-city-zip.php");
+        header("Location: regions.php");
 
     }
 
@@ -52,9 +49,9 @@
         <div class="col-6">
             <form action="./edit-rcz.php" method="post" enctype="multipart/form-data">
 
-                 <div class="edit form-group">
-                    <label for="name">Name</label>
-                    <input type="text" name="name" value="<?php echo $region_city; ?>">
+                <div class="edit form-group">
+                    <label for="zoneName">GroupZone</label>
+                    <input type="text" name="zoneName" value="<?php echo  $region_zoneName; ?>">
                 </div>
 
                 <div class="edit form-group">

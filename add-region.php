@@ -7,14 +7,13 @@
 
 <?php
 
-if(isset($_POST['edit_region'])) {
+if(isset($_POST['add_region'])) {
 
-    $region_city = $_POST['city'];
-    $region_zip = $_POST['zip'];
+    $region_name = $_POST['zonename'];
+    $region_municipality = $_POST['municipality'];
 
-
-    $query = "INSERT INTO Municipalities(City, Zip) ";
-    $query .= "VALUES('{$region_city}', '{$region_zip}')";
+    $query = "INSERT INTO ZoneMuni(`Municipality`, `﻿ZoneName`) ";
+    $query .= "VALUES('{$region_name}', '{$region_municipality}')";
 
     $create_user_query = mysqli_query($connection, $query);
 
@@ -35,23 +34,23 @@ if(isset($_POST['edit_region'])) {
 
         <div class="col-md-4"></div>
         <div class="col-md-auto">
-            <h3>Add Employee</h3>
+            <h3>Add Region</h3>
 
             <form action="./add-region.php" method="post">
 
                
             <div class="add form-group">
-                    <label for="city">City</label>
-                    <input type="text" name="city">
+                    <label for="zonename">Zone Name</label>
+                    <input type="text" name="zonename">
                 <div>
 
                 <div class="add form-group">
-                    <label for="zip">Zip</label>
-                    <input type="text" name="zip">
+                    <label for="municipality">Municipality</label>
+                    <input type="text" name="municipality">
                 <div>
 
                 <div class="add form-group">
-                    <input class="btn btn-primary" type="submit" name="edit_region" value="Add Region">
+                    <input class="btn btn-primary" type="submit" name="add_region" value="Add Region">
                 </div>
 
             </form>  

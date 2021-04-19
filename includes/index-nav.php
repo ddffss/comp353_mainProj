@@ -12,7 +12,6 @@
         <a href="./phworkers.php" class="nav-list">PH Workers</a>
         <a href="./regions.php" class="nav-list">Regions</a>
         <a href="./phrecommendation.php" class="nav-list">Info</a>
-        <a href="./login.php" class="nav-list">Log In</a>
     </div>
 </div>
 <hr>

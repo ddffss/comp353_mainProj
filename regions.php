@@ -34,8 +34,8 @@
             <?php
                 
 
-                $query="SELECT * FROM ZoneLevels zl , ZoneMuni zm , Municipalities m WHERE zl.Deleted = 0 AND zm.Deleted = 0 AND m.Deleted = 0 AND zm.`﻿ZoneName` = zl.GroupZone AND zm.Municipality = m.City GROUP BY zl.GroupZone";
-
+                // $query="SELECT * FROM ZoneLevels zl , ZoneMuni zm , Municipalities m WHERE zl.Deleted = 0 AND zm.Deleted = 0 AND m.Deleted = 0 AND zm.`﻿ZoneName` = zl.GroupZone AND zm.Municipality = m.City GROUP BY zl.GroupZone";
+                $query ="SELECT * FROM ZoneLevels";
                 // function below will pull out the result
                 $select_user_query = (mysqli_query($connection, $query));
                 if(!$select_user_query) {
@@ -94,14 +94,23 @@
                 echo "<td>History</td>" ;
                 echo "<td>{$db_alert}</td>";
 
-                echo "<td class='action'><a href='region-city-zip.php'>edit region</a> <br> <a href='edit-region-alert.php'>edit alert</a></td>";
+                echo "<td class='action'><a href='regions.php?delete={$db_name}'>Delete</a><br><a href='region-city-zip.php?edit={$db_name}'>Edit City/Zip</a> <br> <a href='edit-region-alert.php?edit={$db_name}'>Edit Alert</a></td>";
 
                 echo "</tr>";
-
             }
 
           ?>
-    
+            <?php
+                global $connection;
+
+                if(isset($_GET['delete'])) {
+                    $zonename=$_GET['delete'];
+                    $query_delete="DELETE FROM ZoneLevels WHERE GroupZone LIKE '%$zonename%'";
+                    $check_query_delete = mysqli_query($connection, $query_delete);
+                    header("Location: regions.php");
+                }
+            ?>
+
 
 
             </table>   

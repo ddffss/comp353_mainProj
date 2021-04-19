@@ -13,7 +13,7 @@
 if(isset($_POST['edit_facility'])) {
 
         $facility_name = $_POST['name'];
-        $facility_type = $_POST['centertype'];
+        $facility_type = $_POST['facilitytype'];
         $facility_phone = $_POST['phone'];
         $facility_address = $_POST['address'];
         $facility_method = $_POST['testmethod'];
@@ -52,7 +52,11 @@ if(isset($_POST['edit_facility'])) {
 
                 <div class="add form-group">
                     <label for="workfacility">Center Type</label>
-                    <input type="text" name="centertype">
+                    <select name="facilitytype" id="facility">
+                            <option value="Hospital">Hospital</option>
+                            <option value="Clinic">Clinic</option>
+                            <option value="Special Installment">Special Installment</option>
+                    </select>    
                 </div>
 
                 <div class="add form-group">
