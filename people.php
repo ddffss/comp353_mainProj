@@ -98,7 +98,7 @@
                     $medicare=$_GET['delete'];
                     $query_delete="DELETE FROM Person WHERE Medicare LIKE '$medicare'";
                     $check_query_delete = mysqli_query($connection, $query_delete);
-                    header("Location: people.php");
+                    header("Location: comp353_mainProj/people.php");
                 }
             ?>
 

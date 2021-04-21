@@ -32,7 +32,7 @@ if(isset($_POST['add_user'])) {
     if(!$create_user_query) {
         die('QUERY FAILED' . mysqli_error($connection));
     }
-    header("Location: people.php");
+    header("Location: comp353_mainProj/people.php");
 
 } 
 
