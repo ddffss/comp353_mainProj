@@ -84,7 +84,7 @@
             <tr>
             <th>Name</th>      
             <th>Work Facility</th>
-            <th>List of Employees she Worked with</th>
+            <th>List of Employees he/she Worked with</th>
             </tr>
 
     <?php
@@ -101,12 +101,32 @@
 
     $phw_firstname = $row['FirstName'];
     $phw_lastname = $row['LastName'];
+    $phw_medicare = $row['Medicare'];
     $phw_facility = $row['WorkFacility'];
 
         echo "<tr>";
         echo "<td>{$phw_firstname} {$phw_lastname}</td>";
         echo "<td>{$phw_facility}</td>";
-        echo "<td>list of co-workeers</td>";
+        echo "<td><ul>";
+        ?>
+
+    <?php
+        // $query3 = "SELECT phw2.Medicare FROM Person p, PublicHealthWorker phw, PublicHealthWorker phw2 WHERE phw.Medicare LIKE '%$phw_medicare%' AND  phw.Medicare=p.Medicare AND  phw.Medicare <> phw2.Medicare AND phw.WorkFacility = phw2.WorkFacility AND ((phw.ShiftStart < phw2.ShiftStart AND phw.ShiftEnd > phw2.ShiftEnd) OR (phw.ShiftStart > phw2.ShiftStart AND phw.ShiftEnd < phw2.ShiftEnd))";
+       
+        $query3 ="SELECT phw2.Medicare FROM PublicHealthWorker phw, PublicHealthWorker phw2 WHERE phw.Medicare LIKE '%$phw_medicare%'  AND phw.Medicare <> phw2.Medicare AND phw.WorkFacility = phw2.WorkFacility AND ((phw.ShiftStart < phw2.ShiftStart AND phw.ShiftEnd > phw2.ShiftEnd) OR (phw.ShiftStart > phw2.ShiftStart AND phw.ShiftEnd < phw2.ShiftEnd))";
+        $select_user_query3 = (mysqli_query($connection, $query3));
+        if(!$select_user_query3) {
+            die("QUERY FAILED". mysqli_error($connection));
+        }
+
+            while($row = mysqli_fetch_array($select_user_query3)){
+
+                $db_medicare= $row['Medicare'];
+
+                echo "<li>{$db_medicare}</li>";
+            }
+        
+        echo "</ul></td>" ;
         echo "</tr>";
     } ?>
     
