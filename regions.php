@@ -89,7 +89,31 @@
 
                 $count_positive=0;
                 $count_negative=0;
+
+                $query_positive="SELECT * FROM Person p , Diagnostic d ,Municipalities m ,ZoneMuni zm WHERE zm.﻿ZoneName LIKE '%$db_name%' AND zm.Municipality = m.City AND p.PostalCode = m.Zip AND p.Medicare =d.PatientMedicare  AND d.Result ='1'";
+
+                $select_region_query_positive = (mysqli_query($connection, $query_positive));
+                if(!$select_region_query_positive) {
+                    die("QUERY FAILED". mysqli_error($connection));
+                }
+    
+                    while($row = mysqli_fetch_array($select_region_query_positive)){
+                        $count_positive++;
+                    }
+
                 echo "<td>$count_positive</td>" ;
+
+
+                $query_negative="SELECT * FROM Person p , Diagnostic d ,Municipalities m ,ZoneMuni zm WHERE zm.﻿ZoneName LIKE '%$db_name%' AND zm.Municipality = m.City AND p.PostalCode = m.Zip AND p.Medicare =d.PatientMedicare  AND d.Result ='0'";
+
+                $select_region_query_negative = (mysqli_query($connection, $query_negative));
+                if(!$select_region_query_negative) {
+                    die("QUERY FAILED". mysqli_error($connection));
+                }
+    
+                    while($row = mysqli_fetch_array($select_region_query_negative)){
+                        $count_negative++;
+                    }
                 echo "<td>$count_negative</td>" ;
                 echo "<td>History</td>" ;
                 echo "<td>{$db_alert}</td>";

@@ -1,5 +1,6 @@
 <?php include "includes/db.php";?>
 
+<?php session_start();?>
 
 <?php include "includes/header.php";?>
 <?php include "includes/index-nav.php";?>
@@ -47,6 +48,7 @@
                 $db_city = $row['City'];
                 $db_zip = $row['Zip'];
                 $db_alert = $row['ZoneLevel'];
+                
            
                    echo "<tr>";
                    echo "<td>{$db_name}</td>";
@@ -58,6 +60,8 @@
 
                    echo "</tr>";
                 }
+                
+                $_SESSION['groupzonename'] =  $groupzonename;
             }
 
           ?>

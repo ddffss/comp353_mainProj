@@ -90,6 +90,28 @@
 
     </table>   
 
+    <?php
+    
+    $query ="SELECT * FROM PublicHealthWorker phw , Diagnostic d Person p WHERE d.PatientMedicare = phw.Medicare AND phw.Medicare = p.Medicare AND d.Deleted = 0 AND p2.Deleted = 0 ORDER BY d.`Result` DESC";
+
+    $select_user_query = (mysqli_query($connection, $query));
+    if(!$select_user_query) {
+    die("QUERY FAILED". mysqli_error($connection));
+    }
+
+    while($row = mysqli_fetch_array($select_user_query)) {
+
+    $phw_firstname = $row['FirstName'];
+    $phw_lastname = $row['LastName'];
+    $phw_facility = $row['WorkFacility'];
+
+        echo "<tr>";
+        echo "<td>{$phw_firstname} {$phw_lastname}</td>";
+        echo "<td>{$phw_facility}</td>";
+        echo "<td>list of co-workeers</td>";
+        echo "</tr>";
+    } ?>
+
 
 </div>
     

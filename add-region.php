@@ -9,16 +9,30 @@
 
 if(isset($_POST['add_region'])) {
 
+    $region_level = $_POST['zonelevel'];
     $region_name = $_POST['zonename'];
-    $region_municipality = $_POST['municipality'];
+    $region_city = $_POST['city'];
+    $region_zip = $_POST['zip'];
 
-    $query = "INSERT INTO ZoneMuni(`Municipality`, `﻿ZoneName`) ";
-    $query .= "VALUES('{$region_name}', '{$region_municipality}')";
+    $query1 = "INSERT INTO ZoneLevels(`GroupZone`, `ZoneLevel`) ";
+    $query1 .= "VALUES('{$region_name}', '{$region_level}')";
 
-    $create_user_query = mysqli_query($connection, $query);
+
+    $query2 = "INSERT INTO ZoneMuni(`Municipality`, `﻿ZoneName`)";
+    $query2 .= "VALUES('{$region_city}', '{$region_name}')";
+
+    $query2 = "INSERT INTO Municipalities(`City`, `Zip`)";
+    $query2 .= "VALUES('{$region_city}', '{$region_zip}')";
+
+    $create_query1 = mysqli_query($connection, $query1);
+    $create_query2 = mysqli_query($connection, $query2);
 
     // confirmQuery($create_post_query);
-    if(!$create_user_query) {
+    if(!$create_query1) {
+        die('QUERY FAILED' . mysqli_error($connection));
+    }
+
+    if(!$create_query2) {
         die('QUERY FAILED' . mysqli_error($connection));
     }
     header("Location: regions.php");
@@ -38,16 +52,31 @@ if(isset($_POST['add_region'])) {
 
             <form action="./add-region.php" method="post">
 
-               
-            <div class="add form-group">
+                <div class="add form-group">
+                        <label for="zonelevel">Zone Level</label>
+                            <select name="zonelevel" id="facility">
+                                <option value=1>1</option>
+                                <option value=2>2</option>
+                                <option value=3>3</option>
+                                <option value=3>4</option>
+                            </select>    
+                <div>
+
+                <div class="add form-group">
                     <label for="zonename">Zone Name</label>
                     <input type="text" name="zonename">
                 <div>
 
                 <div class="add form-group">
-                    <label for="municipality">Municipality</label>
-                    <input type="text" name="municipality">
+                    <label for="city">City</label>
+                    <input type="text" name="city">
                 <div>
+
+                <div class="add form-group">
+                    <label for="zip">Zip</label>
+                    <input type="text" name="zip">
+                <div>
+
 
                 <div class="add form-group">
                     <input class="btn btn-primary" type="submit" name="add_region" value="Add Region">
