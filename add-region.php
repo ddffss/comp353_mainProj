@@ -13,7 +13,7 @@ if(isset($_POST['add_region'])) {
     $region_municipality = $_POST['municipality'];
 
     $query = "INSERT INTO ZoneMuni(`Municipality`, `﻿ZoneName`) ";
-    $query .= "VALUES('{$region_name}', '{$region_municipality}')";
+    $query .= "VALUES('{$region_municipality}', '{$region_name}')";
 
     $create_user_query = mysqli_query($connection, $query);
 
