@@ -32,7 +32,11 @@ if(isset($_POST['add_user'])) {
     if(!$create_user_query) {
         die('QUERY FAILED' . mysqli_error($connection));
     }
+<<<<<<< HEAD
     header("Location: ./people.php");
+=======
+    header("Location: people.php");
+>>>>>>> 137341dc19c6ba5cf07e7693c1c1bb5d771e6824
 
 } 
 
