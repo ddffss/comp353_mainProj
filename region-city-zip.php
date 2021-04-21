@@ -56,8 +56,8 @@
                    echo "<td>{$db_city}</td>";
                    echo "<td>{$db_zip}</td>";
 
-                   echo "<td class=\"action\"> <a href='region-city-zip.php?delete={$db_zip}'><i class=\"fa fa-trash\"> </i></a> <a href='edit-rcz.php?edit={$db_zip}'><i class=\"fa fa-pencil\"> </i></a></td>";
-                //    echo "<td class=\"action\"> <a href='region-city-zip.php?delete={$db_zip}'><i class=\"fa fa-trash\"> </i></a> </td>";
+                //    echo "<td class=\"action\"> <a href='region-city-zip.php?delete={$db_zip}'><i class=\"fa fa-trash\"> </i></a> <a href='edit-rcz.php?edit={$db_zip}'><i class=\"fa fa-pencil\"> </i></a></td>";
+                   echo "<td class=\"action\"> <a href='region-city-zip.php?delete={$db_zip}'><i class=\"fa fa-trash\"> </i></a> </td>";
 
                    echo "</tr>";
                    $_SESSION['alert'] =  $db_alert;
