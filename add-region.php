@@ -10,7 +10,7 @@
 if(isset($_POST['add_region'])) {
 
     $region_level = $_POST['zonelevel'];
-    $region_name = $_POST['zonename'];
+    $region_name = $_POST['zonename']; 
     $region_city = $_POST['city'];
     $region_zip = $_POST['zip'];
 
@@ -20,11 +20,12 @@ if(isset($_POST['add_region'])) {
     $query2 = "INSERT INTO ZoneMuni(`Municipality`, `﻿ZoneName`)";
     $query2 .= "VALUES('{$region_city}', '{$region_name}')";
 
-    $query2 = "INSERT INTO Municipalities(`City`, `Zip`)";
-    $query2 .= "VALUES('{$region_city}', '{$region_zip}')";
+    $query3 = "INSERT INTO Municipalities(`City`, `Zip`)";
+    $query3 .= "VALUES('{$region_city}', '{$region_zip}')";
 
     $create_query1 = mysqli_query($connection, $query1);
     $create_query2 = mysqli_query($connection, $query2);
+    $create_query3 = mysqli_query($connection, $query3);
 
     // confirmQuery($create_post_query);
     if(!$create_query1) {
@@ -33,6 +34,10 @@ if(isset($_POST['add_region'])) {
 
     if(!$create_query2) {
         die('QUERY FAILED' . mysqli_error($connection));
+    }
+
+    if(!$create_query3) {
+        die('QUERY FAILED' . mysqli_error($connection3));
     }
     header("Location: regions.php");
 

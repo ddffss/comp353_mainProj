@@ -129,6 +129,7 @@
 
                 if(isset($_GET['delete'])) {
                     $zonename=$_GET['delete'];
+                    echo $zonename;
                     $query_delete="DELETE FROM ZoneLevels WHERE GroupZone LIKE '%$zonename%'";
                     $check_query_delete = mysqli_query($connection, $query_delete);
                     header("Location: regions.php");
