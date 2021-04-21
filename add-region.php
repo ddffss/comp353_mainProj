@@ -17,7 +17,6 @@ if(isset($_POST['add_region'])) {
     $query1 = "INSERT INTO ZoneLevels(`GroupZone`, `ZoneLevel`) ";
     $query1 .= "VALUES('{$region_name}', '{$region_level}')";
 
-
     $query2 = "INSERT INTO ZoneMuni(`Municipality`, `﻿ZoneName`)";
     $query2 .= "VALUES('{$region_city}', '{$region_name}')";
 
