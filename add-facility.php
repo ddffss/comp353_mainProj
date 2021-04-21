@@ -76,11 +76,11 @@ if(isset($_POST['edit_facility'])) {
                             <option value="both">Both</option>
                         </select>                
                 </div>
+
                 <div class="add form-group">
                     <label for="drivethru">Drive Thru</label>
                     <input type="checkbox" class="symptom" name="drivethru" value="1">
                 </div>
-
 
                 <div class="add form-group">
                     <label for="City">City</label>
