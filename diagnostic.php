@@ -83,14 +83,13 @@
     <table id="population">
             <tr>
             <th>Name</th>      
-            <th>Work Facility</th>
             <th>List of Employees he/she Worked with</th>
             </tr>
 
     <?php
     
 
-    $query2 ="SELECT * FROM PublicHealthWorker phw , Diagnostic d, Person p WHERE d.PatientMedicare = phw.Medicare AND phw.Medicare = p.Medicare AND d.Deleted = 0 AND p.Deleted = 0 AND d.Result = 1 ORDER BY d.`Result` DESC";
+    $query2 ="SELECT * FROM PublicHealthWorker phw , Diagnostic d, Person p WHERE d.PatientMedicare = phw.Medicare AND phw.Medicare = p.Medicare AND d.Deleted = 0 AND p.Deleted = 0 AND d.Result = 1 GROUP BY phw.Medicare ORDER BY d.`Result` DESC";
 
     $select_user_query2 = (mysqli_query($connection, $query2));
     if(!$select_user_query2) {
@@ -106,12 +105,10 @@
 
         echo "<tr>";
         echo "<td>{$phw_firstname} {$phw_lastname}</td>";
-        echo "<td>{$phw_facility}</td>";
         echo "<td><ul>";
         ?>
 
     <?php
-        // $query3 = "SELECT phw2.Medicare FROM Person p, PublicHealthWorker phw, PublicHealthWorker phw2 WHERE phw.Medicare LIKE '%$phw_medicare%' AND  phw.Medicare=p.Medicare AND  phw.Medicare <> phw2.Medicare AND phw.WorkFacility = phw2.WorkFacility AND ((phw.ShiftStart < phw2.ShiftStart AND phw.ShiftEnd > phw2.ShiftEnd) OR (phw.ShiftStart > phw2.ShiftStart AND phw.ShiftEnd < phw2.ShiftEnd))";
        
         $query3 ="SELECT phw2.Medicare FROM PublicHealthWorker phw, PublicHealthWorker phw2 WHERE phw.Medicare LIKE '%$phw_medicare%'  AND phw.Medicare <> phw2.Medicare AND phw.WorkFacility = phw2.WorkFacility AND ((phw.ShiftStart < phw2.ShiftStart AND phw.ShiftEnd > phw2.ShiftEnd) OR (phw.ShiftStart > phw2.ShiftStart AND phw.ShiftEnd < phw2.ShiftEnd))";
         $select_user_query3 = (mysqli_query($connection, $query3));

@@ -23,23 +23,16 @@
         }
     }
 
-    if(isset($_POST['edit_region'])) {
+    if(isset($_POST['edit-region'])) {
 
-        $region_zonelevel = $_POST['zonelevel'];
-        $region_zoneName = $_POST['zoneName'];
+        $region_zoneName = $_POST['zonename'];
         $region_city = $_POST['city'];
         $region_zip = $_POST['zip'];
-
-        $query1 = "UPDATE ZoneLevels SET ";
-        $query1 .= "`GroupZone` ='{$region_zoneName}', ";
-        $query1 .= "`ZoneLevel` ='{$region_zonelevel}' ";
-        $query1 .="WHERE `GroupZone` LIKE '%$groupzonename%'";
-
 
         $query2 = "UPDATE ZoneMuni SET ";
         $query2 .= "`Municipality` ='{$region_city}', ";
         $query2 .= "`﻿ZoneName` ='{$region_zoneName}' ";
-        $query2 .="WHERE `﻿ZoneName` LIKE '%$groupzonename%'";
+        $query2 .="WHERE `﻿ZoneName` LIKE '%$region_zoneName%'";
 
 
         $query3 = "UPDATE Municipalities SET ";
@@ -47,14 +40,9 @@
         $query3 .= "Zip ='{$region_zip}' ";
         $query3 .="WHERE Zip LIKE '%$region_zip%'";
 
-        $update_query1 = mysqli_query($connection, $query1);
         $update_query2 = mysqli_query($connection, $query2);
         $update_query3 = mysqli_query($connection, $query3);
 
-
-        if(!$update_query1) {
-            die('QUERY1 FAILED' . mysqli_error($connection));
-        }
 
         if(!$update_query2) {
             die('QUERY2 FAILED' . mysqli_error($connection));
@@ -77,36 +65,9 @@
             <form action="./edit-rcz.php" method="post" enctype="multipart/form-data">
 
 
-            <div class="edit form-group">
-                    <label for="zonelevel">Zone Level</label>
-                        <select name="zonelevel" id="facility">
-                        <?php 
-                            if($region_zonelevel =='1') {
-                                echo "<option value=1>1</option>";
-                                echo "<option value=2>2</option>";
-                            }
-                            else if($region_zonelevel =='2') {
-                                echo "<option value=2>2</option>";
-                                echo "<option value=1>1</option>";
-                                echo "<option value=3>3</option>";
-                            }
-                            else if($region_zonelevel =='3') {
-                                echo "<option value=3>3</option>";
-                                echo "<option value=2>2</option>";
-                                echo "<option value=4>4</option>";
-                            }
-                            else if($region_zonelevel =='4') {
-                                echo "<option value=4>4</option>";
-                                echo "<option value=3>3</option>";
-                            }
-                            ?>
-                        </select>    
-                <div>
-
-
                 <div class="edit form-group">
-                    <label for="zoneName">Zone Name</label>
-                    <input type="text" name="zoneName" value="<?php echo  $region_zoneName; ?>">
+                    <label for="zonename">Zone Name</label>
+                    <input type="text" name="zonename" value="<?php echo $_SESSION['groupzonename'];?> "> 
                 </div>
 
                 <div class="edit form-group">
@@ -120,7 +81,7 @@
                 </div>
 
                 <div class="edit form-group">
-                    <input class="btn btn-primary" type="submit" name="edit_region" value="Update">
+                    <input class="btn btn-primary" type="submit" name="edit-region" value="Update">
                 </div>
 
 

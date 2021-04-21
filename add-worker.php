@@ -9,6 +9,9 @@
 
 if(isset($_POST['edit_worker'])) {
 
+
+    $worker_fname = $_POST['fname'];
+    $worker_lname = $_POST['lname'];
     $worker_medicare = $_POST['medicare'];
     $worker_facility = $_POST['workfacility'];
     $worker_shift = $_POST['shift'];
@@ -18,13 +21,23 @@ if(isset($_POST['edit_worker'])) {
     // INSERT INTO `hec353_4`.`PublicHealthWorker` (`Medicare`, `WorkFacility`, `Shift`, `ShiftStart`, `ShiftEnd`) VALUES ('SMIJ-9004-1403', 'MUHC', 'Morning', '2021-01-10', '2021-01-30');
 
 
-    $query = "INSERT INTO PublicHealthWorker(`Medicare`, `WorkFacility`, `Shift`, `ShiftStart`, `ShiftEnd`) ";
-    $query .= "VALUES('{$worker_medicare}', '{$worker_facility}','{$worker_shift}','{$worker_shiftStart}','{$worker_shiftEnd}')";
+    $query1 = "INSERT INTO Person(`Medicare`, `FirstName`, `LastName`) ";
+    $query1 .= "VALUES('{$worker_medicare}', '{$worker_fname}', '{$worker_lname}')";
 
-    $create_user_query = mysqli_query($connection, $query);
+
+    $query2 = "INSERT INTO PublicHealthWorker(`Medicare`, `WorkFacility`, `Shift`, `ShiftStart`, `ShiftEnd`) ";
+    $query2 .= "VALUES('{$worker_medicare}', '{$worker_facility}','{$worker_shift}','{$worker_shiftStart}','{$worker_shiftEnd}')";
+
+    $create_user_query1 = mysqli_query($connection, $query1);
+
+    $create_user_query2 = mysqli_query($connection, $query2);
+
 
     // confirmQuery($create_post_query);
-    if(!$create_user_query) {
+    if(!$create_user_query1) {
+        die('QUERY FAILED' . mysqli_error($connection));
+    }
+    if(!$create_user_query2) {
         die('QUERY FAILED' . mysqli_error($connection));
     }
     header("Location: phworkers.php");
@@ -45,7 +58,17 @@ if(isset($_POST['edit_worker'])) {
             <form action="./add-worker.php" method="post">
 
                
-            <div class="add form-group">
+                <div class="add form-group">
+                    <label for="fname">First Name</label>
+                    <input type="text" name="fname">
+                <div>
+
+                <div class="add form-group">
+                    <label for="lname">Last Name</label>
+                    <input type="text" name="lname">
+                <div>
+
+                 <div class="add form-group">
                     <label for="medicare">Medicare Card</label>
                     <input type="text" name="medicare">
                 <div>

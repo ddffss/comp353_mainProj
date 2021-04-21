@@ -10,8 +10,8 @@
 <?php
   
     if(isset($_GET['edit'])) {
-        $groupzonename=$_GET['edit'];
-        $query="SELECT * FROM ZoneLevels WHERE GroupZone LIKE '%$groupzonename%'";
+        $region_id=$_GET['edit'];
+        $query="SELECT * FROM ZoneLevels WHERE zoneID LIKE '%$region_id%'";
 
         $select_query = mysqli_query($connection, $query);
 
@@ -19,6 +19,7 @@
 
             $region_name = $row['GroupZone'];
             $region_alert = $row['ZoneLevel'];
+            $region_id = $row['zoneID'];
         }
   }
 
@@ -27,11 +28,13 @@
 
         $region_name = $_POST['name'];
         $region_alert = $_POST['alert'];
+        $region_id = $_POST['zoneID'];
 
+    
         $query = "UPDATE ZoneLevels SET ";
-        $query .= "GroupZone ='{$region_name}', ";
+        $query .= "`GroupZone` ='{$region_name}', ";
         $query .= "ZoneLevel ='{$region_alert}' ";
-        $query .= "WHERE GroupZone LIKE '%$region_name%'";
+        $query .= "WHERE zoneID LIKE '%$region_id%'";
 
         $update_query = mysqli_query($connection, $query);
 
@@ -50,6 +53,9 @@
         <div class="col-3"></div>
         <div class="col-6">
             <form action="./edit-region-alert.php" method="post" enctype="multipart/form-data">
+
+
+                <!-- <div class="edit form-group" style="display:none;"> -->
 
                  <div class="edit form-group">
                     <label for="name">Name</label>
@@ -84,6 +90,11 @@
 
                 <div class="edit form-group">
                     <input class="btn btn-primary" type="submit" name="edit_region" value="Update">
+                </div>
+
+                <div class="edit form-group" style="display:none;">
+                    <label for="zoneID">ID</label>
+                    <input type="text" name="zoneID" value="<?php echo $region_id; ?>">
                 </div>
 
 

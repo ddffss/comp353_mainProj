@@ -11,7 +11,7 @@
         $start =$_POST['start'];
         $end =$_POST['end'];
 
-        $query ="SELECT * FROM Person p2 , Diagnostic d WHERE p2.Deleted = 0 AND d.Deleted = 0 AND d.PatientMedicare = p2.Medicare AND d.DateOfResult BETWEEN '$start' and '$end'";
+        $query ="SELECT * FROM Person p2 , Diagnostic d WHERE p2.Deleted = 0 AND d.Deleted = 0 AND d.PatientMedicare = p2.Medicare AND d.DateOfResult BETWEEN '$start' and '$end' ORDER BY d.`Result` DESC";
 
         $select_user_query = mysqli_query($connection, $query);
 

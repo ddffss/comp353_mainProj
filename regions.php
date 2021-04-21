@@ -8,13 +8,28 @@
 <div class="container">
         
 
+<div class="row">
+        <div class="col-6">
+        </div>
+
+        <div class="col-6 peopleSearch">
+            <form action="search-alerthistory.php" method="post">
+                <input type="text" placeholder="Region Name..." name="regionname">
+                <input type="date" placeholder="Start date..." name="start">
+                <input type="date" placeholder="End date..." name="end">
+                <button class="btn btn-primary" name="submit" type="submit">Search Alert History</button>
+            </form>
+        </div>
+    </div>
+
     <div class="row"> 
         <div class="col-6">
             <h3 class="page-title"> List of Regions</h3>
 
         </div>
+        
 
-        <div class="col-6">
+        <div class="col-6 peopleSearch">
             <a class="add-function" href='./add-region.php'><i class="fa fa-plus"></i> Add Region</a>
         </div>
     </div>
@@ -26,7 +41,6 @@
                     <th>Zip Code</th>
                     <th>Covid Positive</th>
                     <th>Covid Negative</th>
-                    <th>Alert History</th>
                     <th>Current Alert</th>
                     <th>Actions</th>
                     </tr>
@@ -44,6 +58,7 @@
 
                 $db_name = $row['GroupZone'];
                 $db_alert = $row['ZoneLevel'];
+                $region_id = $row['zoneID'];
            
                 echo "<tr>";
                 echo "<td>{$db_name}</td>";
@@ -113,12 +128,9 @@
                         $count_negative++;
                     }
                 echo "<td>$count_negative</td>" ;
-                echo "<td>History</td>" ;
                 echo "<td>{$db_alert}</td>";
 
-                echo "<td class='action'><a href='regions.php?delete={$db_name}'>Delete</a><br><a href='region-city-zip.php?edit={$db_name}'>Edit City/Zip</a> <br> <a href='edit-region-alert.php?edit={$db_name}'>Edit Alert</a></td>";
-
-                // echo "<td class=\"action\"><a href='regions.php?delete={$db_name}'>Delete</a></td>";
+                echo "<td class='action'><a href='regions.php?delete={$region_id}'>Delete</a><br><a href='region-city-zip.php?edit={$db_name}'>Edit City/Zip</a> <br> <a href='edit-region-alert.php?edit={$region_id}'>Edit Region</a></td>";
 
                 echo "</tr>";
             }
@@ -128,13 +140,10 @@
                 global $connection;
 
                 if(isset($_GET['delete'])) {
-                    $zonename=$_GET['delete'];
-                    echo $zonename;
-                    $query_delete1="DELETE FROM ZoneLevels WHERE GroupZone LIKE '$zonename'";
-                    $query_delete2="DELETE FROM ZoneMuni WHERE ZoneName LIKE '$zonename'";
-
+                    $zoneID=$_GET['delete'];
+                    // echo $zonename;
+                    $query_delete1="DELETE FROM `ZoneLevels` WHERE `zoneID` LIKE '$zoneID'";
                     $check_query_delete1 = mysqli_query($connection, $query_delete1);
-                    $check_query_delete2 = mysqli_query($connection, $query_delete2);
 
                     header("Location: regions.php");
                 }

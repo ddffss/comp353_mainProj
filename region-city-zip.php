@@ -6,12 +6,19 @@
 <?php include "includes/index-nav.php";?>
 
 
+<?php 
+    if(isset($_GET['edit'])) {
+        $groupzonename=$_GET['edit'];
+
+        $_SESSION['groupzonename'] =  $groupzonename;
+
+?>        
 <div class="container">
         
 
     <div class="row"> 
         <div class="col-6">
-            <h3 class="page-title"> List of Regions</h3>
+            <h3 class="page-title"> List of Cities in Region <?php echo $groupzonename ?> </h3>
 
         </div>
 
@@ -22,17 +29,12 @@
 
             <table id="population">
                     <tr>
-                    <th>Name</th>
                     <th>City</th>      
                     <th>Zip Code</th>
-                    <th>Alert Status</th>
                     <th>Actions</th>
                     </tr>
 
             <?php
-                
-                if(isset($_GET['edit'])) {
-                    $groupzonename=$_GET['edit'];
             
                 $query="SELECT * FROM ZoneLevels zl , ZoneMuni zm , Municipalities m WHERE zl.Deleted = 0 AND zm.Deleted = 0 AND m.Deleted = 0 AND zm.`﻿ZoneName` = zl.GroupZone AND zm.Municipality = m.City AND zm.`﻿ZoneName` LIKE '%$groupzonename%'";
 
@@ -51,19 +53,18 @@
                 
            
                    echo "<tr>";
-                   echo "<td>{$db_name}</td>";
                    echo "<td>{$db_city}</td>";
                    echo "<td>{$db_zip}</td>";
-                   echo "<td>{$db_alert}</td>";
 
                    echo "<td class=\"action\"> <a href='region-city-zip.php?delete={$db_zip}'><i class=\"fa fa-trash\"> </i></a> <a href='edit-rcz.php?edit={$db_zip}'><i class=\"fa fa-pencil\"> </i></a></td>";
+                //    echo "<td class=\"action\"> <a href='region-city-zip.php?delete={$db_zip}'><i class=\"fa fa-trash\"> </i></a> </td>";
 
                    echo "</tr>";
-                }
-                
-                $_SESSION['groupzonename'] =  $groupzonename;
-            }
+                   $_SESSION['alert'] =  $db_alert;
 
+                }
+            
+            }
           ?>
         
         <?php

@@ -14,6 +14,7 @@
         <p class="profile"><?php echo $_SESSION['firstName'].' '.$_SESSION['lastName'] ?></p>
         <p class="profile"><?php echo $_SESSION['medCardNum'] ?></p>
         <p class="profile"><?php echo $_SESSION['phone'] ?></p>
+        
     </div>
     <div class="col-1"></div>
 
@@ -27,6 +28,8 @@
 <?php
 
 if(isset($_POST['add_to_symptom_history'])) {
+
+    $dateofreslt = $_SESSION['dateofresult'];
 
     $date = $_POST['date'];
     $time= $_POST['time'];
@@ -44,8 +47,8 @@ if(isset($_POST['add_to_symptom_history'])) {
     $sorethroat = isset($_POST['sorethroat'])? 1: 0;
     $others = $_POST['others'];
 
-    $query = "INSERT INTO SymptomHistory(DateOftest, Time, PatientMedicare, Fever, Cough, DifficultyBreathing, LossOfTasteOrSmell, Nausea, StomachAches, Vomiting, Headache, MusclePain, Diarrhea, SoreThroat,OtherSymptoms ) ";
-    $query .= "VALUES('{$date}', '{$time}','{$medicare}','{$fever}','{$cough}','{$difficultybreathing}', '{$lossoftaste}', '{$nausea}', '{$stomachache}', '{$vomiting}','{$headache}', '{$musclepain}','{$diarrhea}', '{$sorethroat}','{$others}')";
+    $query = "INSERT INTO SymptomHistory(DateOfResult, DateOfSymptom, Time, PatientMedicare, Fever, Cough, DifficultyBreathing, LossOfTasteOrSmell, Nausea, StomachAches, Vomiting, Headache, MusclePain, Diarrhea, SoreThroat,OtherSymptoms ) ";
+    $query .= "VALUES('{$dateofreslt}','{$date}', '{$time}','{$medicare}','{$fever}','{$cough}','{$difficultybreathing}', '{$lossoftaste}', '{$nausea}', '{$stomachache}', '{$vomiting}','{$headache}', '{$musclepain}','{$diarrhea}', '{$sorethroat}','{$others}')";
 
     $create_user_query = mysqli_query($connection, $query);
 

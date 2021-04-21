@@ -6,7 +6,17 @@
 
 
 <div class="container">
-        
+    <div class="row">
+        <div class="col-6">
+        </div>
+
+        <div class="col-6 peopleSearch">
+            <form action="search-phw-facility.php" method="post">
+                <input type="text" placeholder="Search by facility..." name="search">
+                <button class="btn btn-primary" name="submit" type="submit">Search</button>
+            </form>
+        </div>
+    </div>
 
     <div class="row"> 
         <div class="col-6">

@@ -9,6 +9,13 @@
     font-size: 17px;
 }
 
+
+table.header {
+    border: none;
+    width: 100%;
+
+
+}
 .topnav-left {
 float: left;
 }
@@ -96,9 +103,9 @@ table {
     border-collapse: collapse; 
 }
 
-table, th, td {
+/* table, th, td {
     border: 1px solid black;
-}
+} */
 
 th, td {
     padding: 15px;

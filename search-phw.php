@@ -14,7 +14,7 @@
         $date =$_POST['date'];
 
 
-        $query ="SELECT * FROM PublicHealthWorker phw , Diagnostic d, Person p WHERE d.PatientMedicare = phw.Medicare AND phw.Medicare = p.Medicare AND d.Deleted = 0 AND p.Deleted = 0 AND d.Result = 1 AND phw.WorkFacility LIKE '%$facility%' AND d.DateOfResult LIKE '%$date%' ORDER BY d.`Result` DESC";
+        $query ="SELECT * FROM PublicHealthWorker phw , Diagnostic d, Person p WHERE d.PatientMedicare = phw.Medicare AND phw.Medicare = p.Medicare AND d.Deleted = 0 AND p.Deleted = 0 AND d.Result = 1 AND phw.WorkFacility LIKE '%$facility%' AND d.DateOfResult LIKE '%$date%'  GROUP BY phw.Medicare ORDER BY d.`Result` DESC";
 
         $select_user_query = mysqli_query($connection, $query);
 

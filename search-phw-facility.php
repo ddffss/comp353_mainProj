@@ -9,7 +9,8 @@
     if(isset($_POST['submit'])) {
         $search =$_POST['search'];
 
-        $query ="SELECT * FROM Person WHERE Address LIKE '%$search%' AND Deleted = 0";
+        $query =" SELECT * FROM PublicHealthWorker phw, Person p WHERE WorkFacility LIKE '%$search%' AND p.Medicare=phw.Medicare AND phw.Deleted=0";
+
         $select_user_query = mysqli_query($connection, $query);
 
         if(!$select_user_query) {
@@ -30,46 +31,24 @@
                 <div class="col-md-auto">
                     <table id="population">
                             <tr>
-                            <th>Name</th>
-                            <th>Birthday</th>
-                            <th>Medicare Card Number</th>
-                            <th>Phone Number</th>
-                            <th>Citizenship</th>
-                            <th>Email</th>
-                            <th>Mother</th>
-                            <th>Father</th>
+                            <th>Name</th>     
+                            <th>Facility</th>     
                             </tr>
 
         <?php
 
-            echo "<h3>List of People who lives at ".$search."</h3>";
+            echo "<h3>List of PH workers who works at ".$search."</h3>";
             while($row = mysqli_fetch_array($select_user_query)) {
 
                 $db_firstName = $row['FirstName'];
                 $db_lastName = $row['LastName'];
+                $db_facility = $row['WorkFacility'];
                 $db_medCardNum = $row['Medicare'];
-                $db_dob = $row['DOB'];
-                $db_phone = $row['Phone'];
-                $db_address = $row['Address'];
-                $db_city = $row['City'];
-                $db_province = $row['Province'];
-                $db_postalCode = $row['PostalCode'];
-                $db_citizenship = $row['Citizenship'];
-                $db_email = $row['Email'];
-                $db_mother = $row['Parent1'];
-                $db_father = $row['Parent2'];
                 ?>
 
                     <tr>
                     <td><?php echo $db_firstName. ' ' . $db_lastName; ?></td>
-                    <td><?php echo  $db_dob; ?></td>
-                    <td><?php echo  $db_medCardNum; ?></td>
-                    <td><?php echo  $db_phone; ?></td>
-                    <td><?php echo  $db_citizenship; ?></td>
-                    <td><?php echo  $db_email; ?></td>
-                    <td><?php echo  $db_mother; ?></td>
-                    <td><?php echo  $db_father; ?></td>
-
+                    <td><?php echo $db_facility ?></td>
                     </tr> 
 
             <?php }
